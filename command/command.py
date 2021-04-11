@@ -14,7 +14,7 @@ class Test1(commands.Cog):
             timestamp=ctx.message.created_at
         )
         
-        embed.set_footer(text="Management Team", icon_url="https://cdn.discordapp.com/attachments/726193232798810132/740629657191186562/7S-.gif")
+        embed.set_footer(text="Empire Media Science", icon_url="https://i.imgur.com/GFGA3dF.jpg")
         await ctx.send(embed=embed)
         
         
