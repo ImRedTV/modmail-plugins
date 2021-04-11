@@ -19,7 +19,7 @@ class Test1(commands.Cog):
     async def sm7b(self, ctx):
         embed = discord.Embed(
             title="**Test**",
-            description="**Test",
+            description="Test",
             color=0xffc000)
 
         await ctx.send(embed=embed)
