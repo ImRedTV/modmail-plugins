@@ -55,9 +55,9 @@ class sell(commands.Cog):
                         int(config["sell-channel"]["channel"])
                     )
 
-                    embed = discord.Embed(title=sell, color=0x59E9FF)
+                    embed = discord.Embed(title=sell, color=0xffc000)
                     embed.set_author(
-                        name=f"{ctx.author} vendu :", icon_url=ctx.author.avatar_url
+                        name=f"{ctx.author} vend un nouvelle article :", icon_url=ctx.author.avatar_url
                     )
                     await sell_channel.send(embed=embed)
                     await ctx.message.add_reaction("\N{WHITE HEAVY CHECK MARK}")
