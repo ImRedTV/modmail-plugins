@@ -1,9 +1,5 @@
-import asyncio
-
 import discord
 from discord.ext import commands
-from redbot.core import Config, checks, commands
-from redbot.core.bot import Red
 
 UNIQUE_ID = 0x6AFE8000
 
