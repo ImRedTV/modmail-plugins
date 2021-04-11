@@ -9,7 +9,7 @@ class Test1(commands.Cog):
     async def empire(self, ctx):
         embed = discord.Embed(
             title="**Qu'est ce qu'Empire Media Science ?**",
-            description="**Empire Media Science** est un consortium de techniciens et d'artistes de l'audiovisuel et des nouveaux médias, créé par <@239744631225581578>, Directeur Technique & Artistique derrière le son et l'image d'une grande partie des grands créateurs de contenu français. \nSi vous êtes venu ici pour savoir comment on a fait le son ou l'image de LeBouseuh ou Inoxtag, Vous êtes au bon endroit !",
+            description="**Empire Media Science** est un consortium de techniciens et d'artistes de l'audiovisuel et des nouveaux médias, créé par <@239744631225581578>, Directeur Technique & Artistique derrière le son et l'image d'une grande partie des grands créateurs de contenu français. \n \nSi vous êtes venu ici pour savoir comment on a fait le son ou l'image de LeBouseuh ou Inoxtag, Vous êtes au bon endroit !",
             color=0xffc000,
             timestamp=ctx.message.created_at
         )
