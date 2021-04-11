@@ -9,8 +9,24 @@ class HelloPlugin(commands.Cog):
         if message.author.bot:
             return
 
-        if "SM7B" in message.content.lower():
-            await message.channel.send("Fils de pute")
+        if "sm7b" in message.content.lower():
+            await message.channel.send("fils de pute")
+        elif "yo" in message.content.lower():
+            await message.channel.send("yo")
+        elif "gm" in message.content.lower():
+            await message.channel.send("Good Morning")
+        elif "gn" in message.content.lower():
+            await message.channel.send("Good Night")
+        elif "good morning" in message.content.lower():
+            await message.channel.send("Good Morning !")
+        elif "good night" in message.content.lower():
+            await message.channel.send("Good Night !")
+        elif "hey" in message.content.lower():
+            await message.channel.send("Hello !")
+        elif "sup" in message.content.lower():
+            await message.channel.send("Sup")
+        elif "hi" in message.content.lower():
+            await message.channel.send("Hello!")
 
 def setup(bot):
     bot.add_cog(HelloPlugin(bot))
