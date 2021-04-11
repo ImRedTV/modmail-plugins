@@ -14,7 +14,7 @@ class Test1(commands.Cog):
             timestamp=ctx.message.created_at
         )
         
-        embed.set_footer(text="Empire Media Science", icon_url="https://i.imgur.com/GFGA3dF.jpg")
+        embed.set_thumbnail(url="https://i.imgur.com/QvzIt7A.png")
         await ctx.send(embed=embed)
         
         
