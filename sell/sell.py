@@ -7,7 +7,7 @@ import asyncio
 
 class sell(commands.Cog):
     """
-    Let's you send a sellion to a designated channel.
+    Envoyer une vente à un canal désigné.
     """
 
     def __init__(self, bot):
@@ -35,7 +35,7 @@ class sell(commands.Cog):
     @checks.has_permissions(PermissionLevel.REGULAR)
     async def sell(self, ctx, *, sell):
         """
-        sell something!
+        Vendre quelque chose!
 
         **Usage**:
         [p]sell more plugins!
@@ -51,28 +51,28 @@ class sell(commands.Cog):
                     embed.set_footer(text="Task failed.")
                     await ctx.send(embed=embed)
                 else:
-                    sellion_channel = self.bot.get_channel(
+                    sell_channel = self.bot.get_channel(
                         int(config["sell-channel"]["channel"])
                     )
 
-                    embed = discord.Embed(title=sellion, color=0x59E9FF)
+                    embed = discord.Embed(title=sell, color=0x59E9FF)
                     embed.set_author(
-                        name=f"sellion by {ctx.author}:", icon_url=ctx.author.avatar_url
+                        name=f"{ctx.author} vendu :", icon_url=ctx.author.avatar_url
                     )
-                    await sellion_channel.send(embed=embed)
+                    await sell_channel.send(embed=embed)
                     await ctx.message.add_reaction("\N{WHITE HEAVY CHECK MARK}")
         else:
-            await ctx.send(embed=discord.Embed(color=self.bot.error_color, title=f"You have been blocked, {ctx.author.name}#{ctx.author.discriminator}.", description=f"Reason: {self.banlist[str(ctx.author.id)]}"))
+            await ctx.send(embed=discord.Embed(color=self.bot.error_color, title=f"Vous avez été bloqué, {ctx.author.name}#{ctx.author.discriminator}.", description=f"Raison: {self.banlist[str(ctx.author.id)]}"))
 
     @commands.command(aliases=["ssc"])
     @checks.has_permissions(PermissionLevel.ADMIN)
     async def setsellchannel(self, ctx, channel: discord.TextChannel):
         """
-        Set the channel where sellions go.
+        Définissez le canal où vont les ventes.
 
         **Usage**:
-        [p]setsellchannel #sellions
-        [p]ssc sellions
+        [p]setsellchannel #sell
+        [p]ssc sells
         [p]ssc 515085600047628288
         """
         await self.coll.find_one_and_update(
@@ -81,38 +81,38 @@ class sell(commands.Cog):
             upsert=True,
         )
         embed = discord.Embed(
-            title=f"Set sellion channel to #{channel}.", color=0x4DFF73
+            title=f"Channel définie sur #{channel}.", color=0xffc000
         )
-        embed.set_author(name="Success!")
-        embed.set_footer(text="Task succeeded successfully.")
+        embed.set_author(name="Succès!")
+        embed.set_footer(text="La tâche a réussi.")
         await ctx.send(embed=embed)
 
     @commands.command()
     @checks.has_permissions(PermissionLevel.ADMIN)
     async def sellchannel(self, ctx):
-        """Affiche le canal de sellion."""
+        """Affiche le canal de sell."""
         config = await self.coll.find_one({"_id": "config"})
-        sellion_channel = self.bot.get_channel(
+        sell_channel = self.bot.get_channel(
             int(config["sell-channel"]["channel"])
         )
         embed = discord.Embed(
             title=f"Le canal de vente est: #{sell_channel}",
             description="Pour le changer, utilisez [p]setsellchannel.",
-            color=0x4DFF73,
+            color=0xffc000,
         )
         await ctx.send(embed=embed)
 
     @checks.has_permissions(PermissionLevel.MOD)
     @commands.group(invoke_without_command=True)
     async def sellmod(self, ctx: commands.Context):
-        """Let's you block and unblock people from using the sell command."""
+        """Empêchez les utilisateurs d'utiliser la commande de vente."""
         await ctx.send_help(ctx.command)
 
     @sellmod.command(aliases=["ban"])
     @checks.has_permissions(PermissionLevel.MOD)
-    async def block(self, ctx, user: discord.User, *, reason="Reason not specified."):
+    async def block(self, ctx, user: discord.User, *, reason="Raison non précisée."):
         """
-        Block a user from using the command.
+        Empêchez un utilisateur d'utiliser la commande.
 
         **Examples:**
         [p]sellmod block @RED for abuse!
@@ -121,15 +121,15 @@ class sell(commands.Cog):
         if str(user.id) in self.banlist:
             embed = discord.Embed(
                 colour=self.bot.error_color,
-                title=f"{user.name}#{user.discriminator} is already blocked.",
-                description=f"Reason: {self.banlist[str(user.id)]}",
+                title=f"{user.name}#{user.discriminator} est déjà bloqué.",
+                description=f"Raison: {self.banlist[str(user.id)]}",
             )
         else:
             self.banlist[str(user.id)] = reason
             embed = discord.Embed(
                 colour=self.bot.main_color,
-                title=f"{user.name}#{user.discriminator} is now blocked.",
-                description=f"Reason: {reason}",
+                title=f"{user.name}#{user.discriminator} est maintenant bloqué.",
+                description=f"Raison: {reason}",
             )
 
         await self._update_mod_db()
@@ -139,7 +139,7 @@ class sell(commands.Cog):
     @checks.has_permissions(PermissionLevel.MOD)
     async def unblock(self, ctx, user: discord.User):
         """
-        Unblock a user from using the command.
+   Débloquez un utilisateur de l'utilisation de la commande.
 
         **Examples:**
         [p]sellmod unblock @RED
@@ -148,13 +148,13 @@ class sell(commands.Cog):
         if str(user.id) not in self.banlist:
             embed = discord.Embed(
                 colour=self.bot.error_color,
-                title=f"{user.name}#{user.discriminator} is not blocked.",
-                description=f"Reason: {self.banlist[str(user.id)]}",
+                title=f"{user.name}#{user.discriminator} n'est pas bloqué.",
+                description=f"Raison: {self.banlist[str(user.id)]}",
             )
         else:
             self.banlist.pop(str(user.id))
             embed = discord.Embed(
-                colour=self.bot.main_color, title=f"{user.name}#{user.discriminator} is now unblocked."
+                colour=self.bot.main_color, title=f"{user.name}#{user.discriminator} est maintenant débloqué."
             )
 
         await self._update_mod_db()
