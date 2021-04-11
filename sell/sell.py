@@ -38,7 +38,7 @@ class sell(commands.Cog):
         Vendre quelque chose!
 
         **Usage**:
-        [p]sell more plugins!
+        [p]offre more plugins!
         """
         if str(ctx.author.id) not in self.banlist:
             async with ctx.channel.typing():
