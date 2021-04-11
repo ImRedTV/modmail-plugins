@@ -33,7 +33,7 @@ class sell(commands.Cog):
 
     @commands.command()
     @checks.has_permissions(PermissionLevel.REGULAR)
-    async def sell(self, ctx, *, sell):
+    async def offre(self, ctx, *, sell):
         """
         Vendre quelque chose!
 
