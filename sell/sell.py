@@ -38,7 +38,7 @@ class sell(commands.Cog):
         Vendre quelque chose!
 
         **Usage**:
-        [p]sell .......
+        [p]sell more plugins!
         """
         if str(ctx.author.id) not in self.banlist:
             async with ctx.channel.typing():
@@ -71,7 +71,7 @@ class sell(commands.Cog):
         Définissez le canal où vont les ventes.
 
         **Usage**:
-        [p]setsellchannel #sellions
+        [p]setsellchannel #sell
         [p]ssc sellions
         [p]ssc 515085600047628288
         """
