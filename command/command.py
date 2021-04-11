@@ -14,6 +14,9 @@ class Test1(commands.Cog):
             timestamp=ctx.message.created_at
         )
         
+        embed.set_footer(text="Management Team", icon_url="https://cdn.discordapp.com/attachments/726193232798810132/740629657191186562/7S-.gif")
+        await ctx.send(embed=embed)
+        
         
 def setup(bot):
     bot.add_cog(Test1(bot))
