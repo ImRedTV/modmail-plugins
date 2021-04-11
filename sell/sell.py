@@ -33,7 +33,7 @@ class sell(commands.Cog):
 
     @commands.command()
     @checks.has_permissions(PermissionLevel.REGULAR)
-    async def sell(self, ctx, *, sell):
+    async def sell(self, ctx, *, sellion):
         """
         sell something!
 
@@ -45,10 +45,10 @@ class sell(commands.Cog):
                 config = await self.coll.find_one({"_id": "config"})
                 if config is None:
                     embed = discord.Embed(
-                        title="Canal de vente non défini.", color=self.bot.error_colour
+                        title="sellion channel not set.", color=self.bot.error_colour
                     )
                     embed.set_author(name="Error.")
-                    embed.set_footer(text="Task failed.")
+                    embed.set_footer(text="Task failed successfully.")
                     await ctx.send(embed=embed)
                 else:
                     sellion_channel = self.bot.get_channel(
@@ -57,7 +57,7 @@ class sell(commands.Cog):
 
                     embed = discord.Embed(title=sellion, color=0x59E9FF)
                     embed.set_author(
-                        name=f"Vendu par {ctx.author}:", icon_url=ctx.author.avatar_url
+                        name=f"sellion by {ctx.author}:", icon_url=ctx.author.avatar_url
                     )
                     await sellion_channel.send(embed=embed)
                     await ctx.message.add_reaction("\N{WHITE HEAVY CHECK MARK}")
