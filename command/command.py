@@ -10,8 +10,8 @@ class Test1(commands.Cog):
         embed = discord.Embed(
             title="**Qu'est ce qu'Empire Media Science ?**",
             description="**Empire Media Science** est un consortium de techniciens et d\'artistes de l\'audiovisuel et des nouveaux médias, créé par <@!239744631225581578>, Directeur Technique & Artistique derrière le son et l\'image d\'une grande partie des grands créateurs de contenu français.\n\n*Si vous êtes venu ici pour savoir comment on a fait le son ou l\'image de LeBouseuh ou Inoxtag,* **Vous êtes au bon endroit !**\n\nN\'hésitez pas a visiter notre <#812345334536863844> et nos <#812775265763328000> ou nous poser vos questions dans <#751028848874749962> ou <#813813822116724746>. Nous vous aiderons du mieux qu\'on peut !\n\nAmusez-vous bien et n\'oubliez pas de lire le <#763141753351045152>",
+            embed.set_thumbnail(url="https://i.imgur.com/QvzIt7A.png"),
             color=0xffc000,
-            thumbnail(url="https://i.imgur.com/QvzIt7A.png"),
             timestamp=ctx.message.created_at
         )
         
