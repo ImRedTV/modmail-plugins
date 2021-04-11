@@ -10,7 +10,7 @@ class Test1(commands.Cog):
         embed = discord.Embed(
             title="**Qu'est ce qu'Empire Media Science ?**",
             description="**Empire Media Science** est un consortium de techniciens et d'artistes de l'audiovisuel et des nouveaux médias, créé par <@239744631225581578>, Directeur Technique & Artistique derrière le son et l'image d'une grande partie des grands créateurs de contenu français.",
-            color=0xffc000,
+            color=ffc000,
             timestamp=ctx.message.created_at
         )
         
