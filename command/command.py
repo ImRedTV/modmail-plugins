@@ -6,11 +6,11 @@ class Test1(commands.Cog):
         self.bot = bot
     
     @commands.command()
-    async def send_s(self, ctx):
+    async def sm7b(self, ctx):
         embed = discord.Embed(
-            title="***7 SIN'S SOCIALS***\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬",
-            description="<:instagram:724501733317017682> **Instagram:**\n• <https://www.instagram.com/7sinsggs/>\n\n<:youtube:663247076167122945> **YouTube:**\n• <https://www.youtube.com/channel/UCrA0fNlbVXKoA1eSu8YsYhA/featured>\n\n<:twitter:724501698248441877> **Twitter:**\n• <https://twitter.com/7sinsGGs>\n\n<:twitch:740634096446734366> **Twitch:**\n• <https://www.twitch.tv/7sinsggs>",
-            color=0xee3463,
+            title=":blue_circle: Pourquoi déconseiller le SM7B et autres micros "Broadcast Dynamiques" ?",
+            description="Version Courte', '\n Car ils ne sont pas adaptés et n\'amèneront que des problèmes. Les micros dynamiques sont très peu sensibles, ils nécessitent énormément de gain. Parfois 60dBs (soit amplifié 1000x), cela inclus tous les parasites et souffles des composants électroniques qui se situeront sur le chemin. Ils sont fait pour être utilisés très proches, et sont rien que pour ça très peu adaptés à l\'animation en stream.\n \n **Vous êtes l\'animateur de votre stream, vous allez gigoter dans tous les sens, faites des économies d\'argent et de migraine et prenez un statique.** \n\n [Version longue & plus d\'info...](https://discord.com/channels/333720455074676736/812345334536863844/820309055523651584)",
+            color=0xff0000,
             timestamp=ctx.message.created_at
         )
         embed.set_footer(text="Management Team", icon_url="https://cdn.discordapp.com/attachments/726193232798810132/740629657191186562/7S-.gif")
