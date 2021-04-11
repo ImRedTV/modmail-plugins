@@ -13,7 +13,7 @@ class Test1(commands.Cog):
             color=0xffc000)
        
         embed.set_thumbnail(url="https://i.imgur.com/QvzIt7A.png")
-        await ctx.send(embed=embed)),
+        await ctx.send(embed=embed))
         
         @commands.command()
     async def sm7b(self, ctx):
