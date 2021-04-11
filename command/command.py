@@ -10,8 +10,8 @@ class HelloPlugin(commands.Cog):
             return
 
         if "hello" in message.content.lower():
-            await message.channel.send("Hey")
-        elif "yo" in message.content.lower():
+            await message.channel.send("SM7B")
+        elif "Fils de pute" in message.content.lower():
             await message.channel.send("yo")
         elif "gm" in message.content.lower():
             await message.channel.send("Good Morning")
