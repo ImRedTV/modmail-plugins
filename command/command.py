@@ -25,7 +25,8 @@ class Test1(commands.Cog):
             color=0xffc000)
 
         embed.set_thumbnail(url="https://i.imgur.com/JpsKGgy.png")
-        await ctx.send(embed=embed)
+        await ctx.send(embed=embed, delete_after=5)
+     
         
 def setup(bot):
     bot.add_cog(Test1(bot))
