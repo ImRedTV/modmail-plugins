@@ -24,6 +24,7 @@ class Test1(commands.Cog):
 
         embed.set_thumbnail(url="https://i.imgur.com/JpsKGgy.png")
         await ctx.send(embed=embed)
+        await client.delete_message(message)
         
 def setup(bot):
     bot.add_cog(Test1(bot))
