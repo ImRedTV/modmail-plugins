@@ -21,7 +21,7 @@ class Test1(commands.Cog):
     
     async def ems():
     		await empire(ctx)
-        
+            
     @commands.command()
     async def sm7b(self, ctx):
         await ctx.message.delete()#suprime l'appel
