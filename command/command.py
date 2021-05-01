@@ -6,7 +6,7 @@ class Test1(commands.Cog):
         self.bot = bot
     
     @commands.command()
-      async def empire(self, ctx,):
+    async def empire(self, ctx):
         await ctx.message.delete()#suprime l'appel
         embed = discord.Embed(
             title="**Qu'est ce qu'Empire Media Science ?**",
