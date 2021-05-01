@@ -7,10 +7,6 @@ class Test1(commands.Cog):
     
     @commands.command()
     async def empire(self, ctx):
-        async def e():
-    		await empire(ctx)
-        async def ems():
-    		await empire(ctx)
         await ctx.message.delete()#suprime l'appel
         embed = discord.Embed(
             title="**Qu'est ce qu'Empire Media Science ?**",
@@ -19,6 +15,12 @@ class Test1(commands.Cog):
        
         embed.set_thumbnail(url="https://i.imgur.com/QvzIt7A.png")
         await ctx.send(embed=embed, delete_after=300)
+        
+    async def e():
+    		await empire(ctx)
+    
+    async def ems():
+    		await empire(ctx)
         
     @commands.command()
     async def sm7b(self, ctx):
