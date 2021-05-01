@@ -5,7 +5,7 @@ class Test1(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
-    @commands.command(aliases=('e','ems')):
+    @commands.command(aliases=('e','ems'))
       async def empire(self, ctx):
         await ctx.message.delete()#suprime l'appel
         embed = discord.Embed(
