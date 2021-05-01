@@ -5,7 +5,8 @@ class Test1(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
-    @commands.Command(aliases=('e','ems','empire'))
+    @commands.Command(aliases=('e','ems'))
+      async def empire(self, ctx):
         await ctx.message.delete()#suprime l'appel
         embed = discord.Embed(
             title="**Qu'est ce qu'Empire Media Science ?**",
