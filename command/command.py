@@ -13,7 +13,7 @@ class Test1(commands.Cog):
             description="**Empire Media Science** est un consortium de techniciens et d'artistes de l'audiovisuel et des nouveaux médias, créé par \n<@!239744631225581578>, Directeur Technique & Artistique derrière le son et l\'image de bien des grands créateurs de contenu français.\n\n Si vous êtes venu ici pour savoir comment on a fait le son ou l'image de **LeBouseuh**, **Inoxtag** et bien d'autres, **c\'est ici !**\n\nDes réponses à vos questions se trouveront dans nos **FAQ**.\n► <#812345334536863844> <#831571183723741234> <#831571616646823978>\n\nDans le cas où vous ne trouveriez pas votre réponse, n\'hésitez pas à solliciter l\'aide de la communauté dans les channels d\'entraide.\n► <#751028848874749962> <#813813822116724746> <#831559995635531847>\n\nUn achat en prévision ? Consultez nos recommandations.\n► <#812775265763328000> <#831578523440513054>\n\nAmusez-vous bien et n\'oubliez pas de lire le <#763141753351045152> !",
             color=0xffc000)
        
-        embed.set_thumbnail(url="https://i.imgur.com/QvzIt7A.png")
+        embed.set_thumbnail(url="https://i.imgur.com/Ln7dMfn.png")
         await ctx.send(embed=embed, delete_after=300)
         
     @commands.command()
@@ -24,7 +24,7 @@ class Test1(commands.Cog):
             description="**Empire Media Science** est un consortium de techniciens et d'artistes de l'audiovisuel et des nouveaux médias, créé par \n<@!239744631225581578>, Directeur Technique & Artistique derrière le son et l\'image de bien des grands créateurs de contenu français.\n\n Si vous êtes venu ici pour savoir comment on a fait le son ou l'image de **LeBouseuh**, **Inoxtag** et bien d'autres, **c\'est ici !**\n\nDes réponses à vos questions se trouveront dans nos **FAQ**.\n► <#812345334536863844> <#831571183723741234> <#831571616646823978>\n\nDans le cas où vous ne trouveriez pas votre réponse, n\'hésitez pas à solliciter l\'aide de la communauté dans les channels d\'entraide.\n► <#751028848874749962> <#813813822116724746> <#831559995635531847>\n\nUn achat en prévision ? Consultez nos recommandations.\n► <#812775265763328000> <#831578523440513054>\n\nAmusez-vous bien et n\'oubliez pas de lire le <#763141753351045152> !",
             color=0xffc000)
        
-        embed.set_thumbnail(url="https://i.imgur.com/QvzIt7A.png")
+        embed.set_thumbnail(url="https://i.imgur.com/Ln7dMfn.png")
         await ctx.send(embed=embed, delete_after=300)
         
     @commands.command()
@@ -35,7 +35,7 @@ class Test1(commands.Cog):
             description="**Empire Media Science** est un consortium de techniciens et d'artistes de l'audiovisuel et des nouveaux médias, créé par \n<@!239744631225581578>, Directeur Technique & Artistique derrière le son et l\'image de bien des grands créateurs de contenu français.\n\n Si vous êtes venu ici pour savoir comment on a fait le son ou l'image de **LeBouseuh**, **Inoxtag** et bien d'autres, **c\'est ici !**\n\nDes réponses à vos questions se trouveront dans nos **FAQ**.\n► <#812345334536863844> <#831571183723741234> <#831571616646823978>\n\nDans le cas où vous ne trouveriez pas votre réponse, n\'hésitez pas à solliciter l\'aide de la communauté dans les channels d\'entraide.\n► <#751028848874749962> <#813813822116724746> <#831559995635531847>\n\nUn achat en prévision ? Consultez nos recommandations.\n► <#812775265763328000> <#831578523440513054>\n\nAmusez-vous bien et n\'oubliez pas de lire le <#763141753351045152> !",
             color=0xffc000)
        
-        embed.set_thumbnail(url="https://i.imgur.com/QvzIt7A.png")
+        embed.set_thumbnail(url="https://i.imgur.com/Ln7dMfn.png")
         await ctx.send(embed=embed, delete_after=300)
         
     @commands.command()
