@@ -1,4 +1,3 @@
-# Copyright (c) 2015 Rapptz
 from discord.ext import commands
 import discord
 import asyncio
@@ -13,29 +12,28 @@ def to_emoji(c):
     return chr(base + c)
 
 
-class Polls(commands.Cog):
-    """Poll voting system."""
+class sondages(commands.Cog):
+    """Sondage système de vote."""
 
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.group(name="poll", invoke_without_command=True)
+    @commands.group(name="sondage", invoke_without_command=True)
     @checks.has_permissions(PermissionLevel.MODERATOR)
-    async def poll(self, ctx: commands.Context):
-        """Easily create Polls."""
+    async def sondage(self, ctx: commands.Context):
+        """Créez facilement des sondages."""
         await ctx.send_help(ctx.command)
 
-    @poll.command()
+    @sondage.command()
     @commands.guild_only()
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def start(self, ctx, *, question):
-        """Interactively creates a poll with the following question.
-
-        To vote, use reactions!
+        """Crée de manière interactive un sondage.
+        Pour voter, utilisez des réactions!
         """
         perms = ctx.channel.permissions_for(ctx.me)
         if not perms.add_reactions:
-            return await ctx.send("Need Add Reactions permissions.")
+            return await ctx.send("Besoin d'autorisations pour ajouter des réactions.")
 
         # a list of messages to delete when we're all done
         messages = [ctx.message]
@@ -51,7 +49,7 @@ class Polls(commands.Cog):
         for i in range(20):
             messages.append(
                 await ctx.send(
-                    f"Say a Poll option or {ctx.prefix}done to publish the Poll."
+                    f"Dites une option de sondage ou {ctx.prefix}publier le sondage."
                 )
             )
 
@@ -62,7 +60,7 @@ class Polls(commands.Cog):
 
             messages.append(entry)
 
-            if entry.clean_content.startswith(f"{ctx.prefix}done"):
+            if entry.clean_content.startswith(f"{ctx.prefix}fini"):
                 break
 
             answers.append((to_emoji(i), entry.clean_content))
@@ -79,37 +77,36 @@ class Polls(commands.Cog):
             description=f"**{question}**\n{answer}",
         )
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
-        poll = await ctx.send(embed=embed)
+        sondage = await ctx.send(embed=embed)
         for emoji, _ in answers:
-            await poll.add_reaction(emoji)
+            await sondage.add_reaction(emoji)
 
     @start.error
-    async def poll_error(self, ctx, error):
+    async def sondage_error(self, ctx, error):
         if isinstance(error, commands.MissingRequiredArgument):
             return await ctx.send("Missing the question.")
 
-    @poll.command()
+    @sondage.command()
     @commands.guild_only()
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def quick(self, ctx, *questions_and_choices: str):
-        """Makes a poll quickly.
-        The first argument is the question and the rest are the choices.
-        for example: `?poll quick "Green or Light Green?" Green "Light Green"`
-
-        or it can be a simple yes or no poll, like:
-        `?poll quick "Do you watch Anime?"`
+        """Fait un sondage rapidement.
+        Le premier argument est la question et le reste sont les choix.
+        par exemple: `!sondage "RED ou LEO?" RED "LEO"`
+        ou cela peut être un simple sondage oui ou non, comme:
+        `!sondage "Qui est le plus beau?"`
         """
 
         if len(questions_and_choices) == 0:
-            return await ctx.send("You need to specify a question.")
+            return await ctx.send("Vous devez spécifier une question.")
         elif len(questions_and_choices) == 2:
-            return await ctx.send("You need at least 2 choices.")
+            return await ctx.send("Vous avez besoin d'au moins 2 choix.")
         elif len(questions_and_choices) > 21:
-            return await ctx.send("You can only have up to 20 choices.")
+            return await ctx.send("Vous ne pouvez avoir que 20 choix.")
 
         perms = ctx.channel.permissions_for(ctx.me)
         if not perms.add_reactions:
-            return await ctx.send("Need Add Reactions permissions.")
+            return await ctx.send("Besoin d'autorisations Ajouter des réactions.")
         try:
             await ctx.message.delete()
         except:
@@ -121,10 +118,10 @@ class Polls(commands.Cog):
                 color=self.bot.main_color, description=f"**{question}**"
             )
             embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
-            poll = await ctx.send(embed=embed)
+            sondage = await ctx.send(embed=embed)
             reactions = ["👍", "👎"]
             for emoji in reactions:
-                await poll.add_reaction(emoji)
+                await sondage.add_reaction(emoji)
 
         else:
             choices = [
@@ -138,10 +135,10 @@ class Polls(commands.Cog):
                 description=f"**{question}**\n{body}",
             )
             embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
-            poll = await ctx.send(embed=embed)
+            sondage = await ctx.send(embed=embed)
             for emoji, _ in choices:
-                await poll.add_reaction(emoji)
+                await sondage.add_reaction(emoji)
 
 
 def setup(bot):
-    bot.add_cog(Polls(bot))
+    bot.add_cog(sondages(bot))
