@@ -6,6 +6,17 @@ class Test1(commands.Cog):
         self.bot = bot
     
     @commands.command()
+    async def cmd(self, ctx):
+        await ctx.message.delete()#suprime l'appel
+        embed = discord.Embed(
+            title="**Liste des commandes Staff**",
+            description="**!areply**\nRépondez à un fil de manière anonyme.\n\n**!close**\nFermez le fil de discussion actuel.\n\n**!contact**\nCréez un thread avec un membre spécifié.\n\n**!delete**\nSupprimez un message envoyé à l'aide de la commande de réponse ou d'une note.\n\n**!edit**\nModifiez un message qui a été envoyé à l'aide de la commande Reply ou anonreply.\n\n**!loglink**\nRécupère le lien vers les journaux du thread actuel.\n\n**!logs**\nObtenez les journaux des threads Modmail précédents d'un membre.\n\n**!note**\nPrenez note du fil de discussion actuel.\n\n**!notify**\nNotifier un utilisateur ou un rôle lors de la réception du prochain message de fil de discussion.\n\n**!nsfw**\nMarque un thread Modmail comme NSFW (pas sûr pour le travail).\n\n**!sfw**\nMarque un fil Modmail comme SFW\n\n**!repair**\nRéparez un fil cassé par Discord.\n\n**!snippet**\nCréez des messages prédéfinis à utiliser dans les threads.\n\n**!subscribe**\nInformez un utilisateur, un rôle ou vous-même pour chaque message de fil de discussion reçu.",
+            color=0xDAC064)
+       
+        embed.set_thumbnail(url="https://i.imgur.com/Ln7dMfn.png")
+        await ctx.send(embed=embed)
+    
+    @commands.command()
     async def empire(self, ctx):
         await ctx.message.delete()#suprime l'appel
         embed = discord.Embed(
