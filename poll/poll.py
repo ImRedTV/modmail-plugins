@@ -89,7 +89,7 @@ class sondages(commands.Cog):
     @sondage.command()
     @commands.guild_only()
     @checks.has_permissions(PermissionLevel.MODERATOR)
-    async def quick(self, ctx, *questions_and_choices: str):
+    async def rapide(self, ctx, *questions_and_choices: str):
         """Fait un sondage rapidement.
         Le premier argument est la question et le reste sont les choix.
         par exemple: `!sondage "RED ou LEO?" RED "LEO"`
