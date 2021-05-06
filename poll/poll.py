@@ -117,9 +117,8 @@ class sondages(commands.Cog):
             embed = discord.Embed(
                 color=self.bot.main_color, description=f"**{question}**"
             )
-            embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
             sondage = await ctx.send(embed=embed)
-            reactions = ["👍", "👎"]
+            reactions = ["✅", "❌"]
             for emoji in reactions:
                 await sondage.add_reaction(emoji)
 
@@ -134,7 +133,6 @@ class sondages(commands.Cog):
                 timestamp=datetime.datetime.utcnow(),
                 description=f"**{question}**\n{body}",
             )
-            embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
             sondage = await ctx.send(embed=embed)
             for emoji, _ in choices:
                 await sondage.add_reaction(emoji)
