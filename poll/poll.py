@@ -27,7 +27,7 @@ class sondages(commands.Cog):
     @sondage.command()
     @commands.guild_only()
     @checks.has_permissions(PermissionLevel.MODERATOR)
-    async def 2(self, ctx, *, question):
+    async def add(self, ctx, *, question):
         """Crée de manière interactive un sondage.
         Pour voter, utilisez des réactions!
         """
@@ -89,7 +89,7 @@ class sondages(commands.Cog):
     @sondage.command()
     @commands.guild_only()
     @checks.has_permissions(PermissionLevel.MODERATOR)
-    async def 1(self, ctx, *questions_and_choices: str):
+    async def fast(self, ctx, *questions_and_choices: str):
         """Fait un sondage rapidement.
         Le premier argument est la question et le reste sont les choix.
         par exemple: `!sondage "RED ou LEO?" RED "LEO"`
