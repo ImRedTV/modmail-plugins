@@ -6,7 +6,7 @@ class Test1(commands.Cog):
         self.bot = bot
     
     @commands.command()
-    async def helpticket(self, ctx):
+    async def ticket(self, ctx):
         await ctx.message.delete()#suprime l'appel
         embed = discord.Embed(
             title="**Liste des commandes de gestion des Tickets**",
