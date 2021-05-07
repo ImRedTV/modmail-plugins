@@ -12,8 +12,8 @@ def to_emoji(c):
     return chr(base + c)
 
 
-class sondages(commands.Cog):
-    """sondage système de vote."""
+class sondage(commands.Cog):
+    """Sondage système de vote."""
 
     def __init__(self, bot):
         self.bot = bot
@@ -27,10 +27,8 @@ class sondages(commands.Cog):
     @sondage.command()
     @commands.guild_only()
     @checks.has_permissions(PermissionLevel.MODERATOR)
-    async def start(self, ctx, *, question):
-        """Crée de manière interactive un sondage.
-        Pour voter, utilisez des réactions!
-        """
+    async def add(self, ctx, *, question):
+        """Crée de manière interactive un sondage."""
         perms = ctx.channel.permissions_for(ctx.me)
         if not perms.add_reactions:
             return await ctx.send("Besoin d'autorisations pour ajouter des réactions.")
@@ -60,7 +58,7 @@ class sondages(commands.Cog):
 
             messages.append(entry)
 
-            if entry.clean_content.startswith(f"{ctx.prefix}done"):
+            if entry.clean_content.startswith(f"{ctx.prefix}fini"):
                 break
 
             answers.append((to_emoji(i), entry.clean_content))
@@ -76,7 +74,6 @@ class sondages(commands.Cog):
             timestamp=datetime.datetime.utcnow(),
             description=f"**{question}**\n{answer}",
         )
-        embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         sondage = await ctx.send(embed=embed)
         for emoji, _ in answers:
             await sondage.add_reaction(emoji)
@@ -84,12 +81,12 @@ class sondages(commands.Cog):
     @start.error
     async def sondage_error(self, ctx, error):
         if isinstance(error, commands.MissingRequiredArgument):
-            return await ctx.send("Missing the question.")
+            return await ctx.send("Manque la question.")
 
     @sondage.command()
     @commands.guild_only()
     @checks.has_permissions(PermissionLevel.MODERATOR)
-    async def quick(self, ctx, *questions_and_choices: str):
+    async def rapide(self, ctx, *questions_and_choices: str):
         """Fait un sondage rapidement.
         Le premier argument est la question et le reste sont les choix.
         par exemple: `!sondage "RED ou LEO?" RED "LEO"`
