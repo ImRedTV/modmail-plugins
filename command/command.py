@@ -1,13 +1,11 @@
 import discord
 from discord.ext import commands
-from core.models import PermissionLevel
 
 class Commande(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
     @commands.command()
-    @checks.has_permissions(PermissionLevel.MODERATOR)
     async def ticket(self, ctx):
         await ctx.message.delete()#suprime l'appel
         embed = discord.Embed(
