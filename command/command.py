@@ -51,15 +51,5 @@ class Commande(commands.Cog):
         embed.set_thumbnail(url="https://i.imgur.com/JpsKGgy.png")
         await ctx.send(embed=embed)
         
-    @commands.command()
-    @checks.has_permissions(PermissionLevel.SUPPORTER)
-    async def userid(self, ctx):
-        thread = ctx.thread
-        if thread == None:
-            member = ctx.author
-        else:
-            member = thread.recipient
-        await ctx.send(f"{member.mention}'s ID is {member.id}")
-        
 def setup(bot):
     bot.add_cog(Commande(bot))
