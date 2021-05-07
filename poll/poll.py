@@ -127,7 +127,7 @@ class sondages(commands.Cog):
 
             body = "\n".join(f"{key}: {c}" for key, c in choices)
             embed = discord.Embed(
-                titre="SONDAGE"
+                title="**SONDAGE**",
                 color=self.bot.main_color,
                 description=f"**{question}**\n{body}",
             )
