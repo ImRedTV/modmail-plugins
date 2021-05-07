@@ -34,7 +34,7 @@ class Clear(commands.Cog):
 
             return await ctx.send(embed=embed)
 
-        message = f"{len(deleted)} messages have been deleted!"
+        message = f"{len(deleted)} **Les messages ont été supprimés !**"
         to_delete = await ctx.send(message)
 
         await to_delete.delete(delay=3)
