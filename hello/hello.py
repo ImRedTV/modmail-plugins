@@ -10,12 +10,7 @@ class HelloPlugin(commands.Cog):
 
         if message.author.bot:
             return
-        
-        if message.channel.id == 830212462371405865:
-          return
-
-        if message.guild.id == 830206090485432403:
-          return   
+      
         #hello
         if message.content.startswith("hello"): 
             await message.channel.send("Hello")
