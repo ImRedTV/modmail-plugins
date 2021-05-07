@@ -235,7 +235,7 @@ class GiveawayPlugin(commands.Cog):
 
         await ctx.send(
             embed=self.generate_embed(
-                "**Combien de temps durera le concours ?**\n- En jours ? Exemple : 1d, 2 days, 1 days\n- En heure ? Exemple : 1h, 1 hours\n- En minutes ? Exemple : 1 minute"
+                "**Combien de temps durera le concours ?**\n- En jours ? Exemple : 1d\n- En heure ? Exemple : 1h\n- En minutes ? Exemple : 1m\n- En seconde ? Exemple : 10s"
             )
         )
         time_cancel = False
