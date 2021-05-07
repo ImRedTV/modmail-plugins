@@ -114,7 +114,7 @@ class sondages(commands.Cog):
         if len(questions_and_choices) == 1:
             embed = discord.Embed(
                 title="**📊 SONDAGE**",
-                color=self.bot.main_color, description=f"**{question}**"
+                color=self.bot.main_color, description=f"**{question}**",
             )
             embed.set_thumbnail(url="https://i.imgur.com/Ln7dMfn.png")
             sondage = await ctx.send(embed=embed)
