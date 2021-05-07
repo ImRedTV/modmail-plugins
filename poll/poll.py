@@ -8,11 +8,11 @@ from core.models import PermissionLevel
 
 
 def to_emoji(c):
-    base = 0xDAC064
+    base = 0x1F1E6
     return chr(base + c)
 
 
-class sondage(commands.Cog):
+class sondages(commands.Cog):
     """sondage système de vote."""
 
     def __init__(self, bot):
