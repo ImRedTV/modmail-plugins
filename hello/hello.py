@@ -13,33 +13,33 @@ class HelloPlugin(commands.Cog):
       
         if message.content.startswith("hello"): 
             await message.add_reaction("👋")
-        elif message.content.startswith("Hello"):
+        if message.content.startswith("Hello"):
             await message.add_reaction("👋")
-        elif message.content.startswith("HELLO"):
+        if message.content.startswith("HELLO"):
             await message.add_reaction("👋")
         if message.content.startswith("Salut"): 
             await message.add_reaction("👋")
-        elif message.content.startswith("salut"):
+        if message.content.startswith("salut"):
             await message.add_reaction("👋")
-       elif message.content.startswith("bonjour"):
+       if message.content.startswith("bonjour"):
             await message.add_reaction("👋")
-       elif message.content.startswith("Bonjour"):
+       if message.content.startswith("Bonjour"):
             await message.add_reaction("👋")
-       elif message.content.startswith("bonsoir"):
+       if message.content.startswith("bonsoir"):
             await message.add_reaction("👋")
-       elif message.content.startswith("Bonsoir"):
+       if message.content.startswith("Bonsoir"):
             await message.add_reaction("👋") 
-       elif message.content.startswith("bonne nuit"):
+       if message.content.startswith("bonne nuit"):
             await message.add_reaction("👋")
-       elif message.content.startswith("Bonne nuit"):
+       if message.content.startswith("Bonne nuit"):
             await message.add_reaction("👋") 
-       elif message.content.startswith("bienvenue"):
+       if message.content.startswith("bienvenue"):
             await message.add_reaction("👋")
-       elif message.content.startswith("Bienvenue"):
+       if message.content.startswith("Bienvenue"):
             await message.add_reaction("👋")  
-       elif message.content.startswith("Welcome"):
+       if message.content.startswith("Welcome"):
             await message.add_reaction("👋")
-       elif message.content.startswith("welcome"):
+       if message.content.startswith("welcome"):
             await message.add_reaction("👋")   
             
 def setup(bot):
