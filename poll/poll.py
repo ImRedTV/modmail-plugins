@@ -70,11 +70,11 @@ class sondages(commands.Cog):
 
         answer = "\n".join(f"{keycap}: {content}" for keycap, content in answers)
         embed = discord.Embed(
-            title="**SONDAGE**",
+            title="**📊 SONDAGE**",
             color=self.bot.main_color,
             description=f"**{question}**\n{answer}",
         )
-        embed.set_thumbnail(url="https://i.imgur.com/Ln7dMfn.png")
+        #embed.set_thumbnail(url="https://i.imgur.com/Ln7dMfn.png")
         sondage = await ctx.send(embed=embed)
         for emoji, _ in answers:
             await sondage.add_reaction(emoji)
@@ -115,7 +115,7 @@ class sondages(commands.Cog):
             embed = discord.Embed(
                 color=self.bot.main_color, description=f"**{question}**"
             )
-            embed.set_thumbnail(url="https://i.imgur.com/Ln7dMfn.png")
+            #embed.set_thumbnail(url="https://i.imgur.com/Ln7dMfn.png")
             sondage = await ctx.send(embed=embed)
             reactions = ["✅", "❌"]
             for emoji in reactions:
@@ -128,7 +128,7 @@ class sondages(commands.Cog):
 
             body = "\n".join(f"{key}: {c}" for key, c in choices)
             embed = discord.Embed(
-                title="**SONDAGE**",
+                title="**📊 SONDAGE**",
                 color=self.bot.main_color,
                 description=f"**{question}**\n{body}",
             )
