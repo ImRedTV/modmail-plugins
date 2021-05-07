@@ -28,7 +28,9 @@ class sondage(commands.Cog):
     @commands.guild_only()
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def add(self, ctx, *, question):
-        """Crée de manière interactive un sondage."""
+        """Crée de manière interactive un sondage.
+        Pour voter, utilisez des réactions!
+        """
         perms = ctx.channel.permissions_for(ctx.me)
         if not perms.add_reactions:
             return await ctx.send("Besoin d'autorisations pour ajouter des réactions.")
@@ -58,7 +60,7 @@ class sondage(commands.Cog):
 
             messages.append(entry)
 
-            if entry.clean_content.startswith(f"{ctx.prefix}fini"):
+            if entry.clean_content.startswith(f"{ctx.prefix}done"):
                 break
 
             answers.append((to_emoji(i), entry.clean_content))
