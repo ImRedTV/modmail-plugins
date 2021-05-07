@@ -28,9 +28,7 @@ class sondages(commands.Cog):
     @commands.guild_only()
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def start(self, ctx, *, question):
-        """Crée de manière interactive un sondage.
-        Pour voter, utilisez des réactions!
-        """
+        """Crée de manière interactive un sondage."""
         perms = ctx.channel.permissions_for(ctx.me)
         if not perms.add_reactions:
             return await ctx.send("Besoin d'autorisations pour ajouter des réactions.")
@@ -49,7 +47,7 @@ class sondages(commands.Cog):
         for i in range(20):
             messages.append(
                 await ctx.send(
-                    f"Dites une option de sondage ou {ctx.prefix}GO publier le sondage."
+                    f"Dites une option de sondage ou **{ctx.prefix}fini** pour publier le sondage."
                 )
             )
 
@@ -60,7 +58,7 @@ class sondages(commands.Cog):
 
             messages.append(entry)
 
-            if entry.clean_content.startswith(f"{ctx.prefix}GO"):
+            if entry.clean_content.startswith(f"{ctx.prefix}fini"):
                 break
 
             answers.append((to_emoji(i), entry.clean_content))
@@ -129,7 +127,6 @@ class sondages(commands.Cog):
             body = "\n".join(f"{key}: {c}" for key, c in choices)
             embed = discord.Embed(
                 color=self.bot.main_color,
-                timestamp=datetime.datetime.utcnow(),
                 description=f"**{question}**\n{body}",
             )
             sondage = await ctx.send(embed=embed)
