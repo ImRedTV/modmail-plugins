@@ -20,7 +20,7 @@ class sondages(commands.Cog):
 
     @commands.group(name="sondage", invoke_without_command=True)
     @checks.has_permissions(PermissionLevel.MODERATOR)
-    async def sondage(self, ctx: commands.Context):
+    async def s(self, ctx: commands.Context):
         """Créez facilement des sondages."""
         await ctx.send_help(ctx.command)
 
