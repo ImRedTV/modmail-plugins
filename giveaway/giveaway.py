@@ -13,7 +13,7 @@ from core.models import PermissionLevel
 
 class GiveawayPlugin(commands.Cog):
     """
-    Host giveaways on your server with this ~~amazing~~ plugin
+    Organisez des concours.
     """
 
     def __init__(self, bot):
@@ -86,10 +86,10 @@ class GiveawayPlugin(commands.Cog):
                 if len(message.reactions) <= 0:
                     embed = message.embeds[0]
                     embed.description = (
-                        f"Giveaway has ended!\n\nSadly no one participated :("
+                        f"Le concours est terminé!\n\nMalheureusement, personne n'a participé :("
                     )
                     embed.set_footer(
-                        text=f"{giveaway['winners']} {'winners' if giveaway['winners'] > 1 else 'winner'} | Ended at"
+                        text=f"{giveaway['winners']} {'winners' if giveaway['winners'] > 1 else 'winner'} | Terminé à"
                     )
                     await message.edit(embed=embed)
                     break
@@ -106,11 +106,11 @@ class GiveawayPlugin(commands.Cog):
                         if len(reacted_users) <= 1:
                             embed = message.embeds[0]
                             embed.description = (
-                                f"Giveaway has ended!\n\nSadly no one participated :("
+                                f"Le concours est terminé!\n\nMalheureusement, personne n'a participé"
                             )
                             embed.set_footer(
                                 text=f"{giveaway['winners']} {'winners' if giveaway['winners'] > 1 else 'winner'} | "
-                                f"Ended at"
+                                f"Terminé à"
                             )
                             await message.edit(embed=embed)
                             del guild, channel, reacted_users, embed
@@ -135,14 +135,14 @@ class GiveawayPlugin(commands.Cog):
                         for winner in winners:
                             winners_text += f"<@{winner}> "
 
-                        embed.description = f"Giveaway has ended!\n\n**{'Winners' if giveaway['winners'] > 1 else 'Winner'}:** {winners_text} "
+                        embed.description = f"Le concours est terminé!\n\n**{'Winners' if giveaway['winners'] > 1 else 'Winner'}:** {winners_text} "
                         embed.set_footer(
                             text=f"{giveaway['winners']} {'winners' if giveaway['winners'] > 1 else 'winner'} | "
-                            f"Ended at"
+                            f"Terminé à"
                         )
                         await message.edit(embed=embed)
                         await channel.send(
-                            f"🎉 Congratulations {winners_text}, you have won **{giveaway['item']}**!"
+                            f"🎉 Toutes nos félicitations {winners_text}, tu as gagné **{giveaway['item']}**!"
                         )
                         try:
                             self.active_giveaways.pop(str(giveaway["message"]))
@@ -157,12 +157,12 @@ class GiveawayPlugin(commands.Cog):
                     break
             else:
 
-                time_remaining = f"{math.floor(g_time // 86400)} Days, {math.floor(g_time // 3600 % 24)} Hours, {math.floor(g_time // 60 % 60)} Minutes, {math.floor(g_time % 60)} Seconds "
+                time_remaining = f"{math.floor(g_time // 86400)} Jours, {math.floor(g_time // 3600 % 24)} Heures, {math.floor(g_time // 60 % 60)} Minutes, {math.floor(g_time % 60)} Secondes "
 
                 embed = message.embeds[0]
                 embed.description = (
-                    f"React with 🎉 to enter the giveaway!\n\n"
-                    f"Time Remaining: **{time_remaining}**"
+                    f"Réagissez avec 🎉 pour participer au concours!\n\n"
+                    f"Temps restant: **{time_remaining}**"
                 )
                 await message.edit(embed=embed)
                 del channel, guild
@@ -181,7 +181,7 @@ class GiveawayPlugin(commands.Cog):
     @checks.has_permissions(PermissionLevel.ADMIN)
     async def giveaway(self, ctx: commands.Context):
         """
-        Create / Stop Giveaways
+        Créer / Arrêter un concours
         """
         await ctx.send_help(ctx.command)
         return
@@ -190,7 +190,7 @@ class GiveawayPlugin(commands.Cog):
     @giveaway.command(name="start", aliases=["create", "c", "s"])
     async def start(self, ctx: commands.Context, channel: discord.TextChannel):
         """
-        Start a giveaway in interactive mode
+        Lancer un concoyrs en mode interactif
         """
 
         def check(msg: discord.Message):
@@ -205,39 +205,38 @@ class GiveawayPlugin(commands.Cog):
 
         embed = discord.Embed(colour=0x00FF00)
 
-        await ctx.send(embed=self.generate_embed("What is the giveaway item?"))
+        await ctx.send(embed=self.generate_embed("Quel est le cadeau ?"))
         giveaway_item = await self.bot.wait_for("message", check=check)
         if cancel_check(giveaway_item) is True:
-            await ctx.send("Cancelled.")
+            await ctx.send("Annulé.")
             return
         embed.title = giveaway_item.content
         await ctx.send(
-            embed=self.generate_embed("How many winners are to be selected?")
+            embed=self.generate_embed("Combien de gagnants doivent être sélectionnés ?")
         )
         giveaway_winners = await self.bot.wait_for("message", check=check)
         if cancel_check(giveaway_winners) is True:
-            await ctx.send("Cancelled.")
+            await ctx.send("Annulé.")
             return
         try:
             giveaway_winners = int(giveaway_winners.content)
         except:
             await ctx.send(
-                "Unable to parse giveaway winners to numbers, exiting. Make sure to pass numbers from next "
-                "time"
+                "Impossible d'analyser les gagnants des concours en chiffres. Assurez-vous de transmettre les numéros du prochain"
+                "temps"
             )
             return
 
         if giveaway_winners <= 0:
             await ctx.send(
-                "Giveaway can only be held with 1 or more winners. Cancelling command."
+                "Le concours ne peut être organisé qu'avec 1 ou plusieurs gagnants. Commande d'annulation."
             )
             return
 
         await ctx.send(
             embed=self.generate_embed(
-                "How long will the giveaway last?\n\n2d / 2days / 2day -> 2 days\n"
-                "2m -> 2 minutes\n2 months -> 2 months"
-                "\ntomorrow / in 10 minutes / 2h 10minutes work too\n"
+                "Combien de temps durera le concours ?\n\n2j / 2jours\n"
+                "2m -> 2 minutes\n2 mois -> 2 mois"
             )
         )
         time_cancel = False
@@ -245,7 +244,7 @@ class GiveawayPlugin(commands.Cog):
             giveaway_time = await self.bot.wait_for("message", check=check)
             if cancel_check(giveaway_time) is True:
                 time_cancel = True
-                await ctx.send("Cancelled.")
+                await ctx.send("Annulé.")
                 break
             resp = await self.bot.session.get(
                 "https://dateparser.hastebin.cc",
@@ -253,11 +252,11 @@ class GiveawayPlugin(commands.Cog):
             )
             if resp.status == 400:
                 await ctx.send(
-                    "I was not able to parse the time properly, please try again."
+                    "Je n'ai pas pu analyser l'heure correctement, veuillez réessayer."
                 )
                 continue
             elif resp.status == 500:
-                await ctx.send("The dateparser API seems to have some problems.")
+                await ctx.send("L'API semble avoir quelques problèmes.")
                 time_cancel = True
                 break
             else:
@@ -269,11 +268,11 @@ class GiveawayPlugin(commands.Cog):
             return
 
         embed.description = (
-            f"React with 🎉 to enter the giveaway!\n\n"
-            f"Time Remaining: **{datetime.fromtimestamp(giveaway_time).strftime('%d %H:%M:%S')}**"
+            f"Réagissez avec 🎉 pour participer au concours!\n\n"
+            f"Temps restant: **{datetime.fromtimestamp(giveaway_time).strftime('%d %H:%M:%S')}**"
         )
         embed.set_footer(
-            text=f"{giveaway_winners} {'winners' if giveaway_winners > 1 else 'winner'} | Ends at"
+            text=f"{giveaway_winners} {'winners' if giveaway_winners > 1 else 'winner'} | Fini à"
         )
         embed.timestamp = datetime.fromtimestamp(giveaway_time)
         msg: discord.Message = await channel.send(embed=embed)
@@ -295,7 +294,7 @@ class GiveawayPlugin(commands.Cog):
     @giveaway.command(name="reroll", aliases=["rroll"])
     async def reroll(self, ctx: commands.Context, _id: str, winners_count: int):
         """
-        Reroll the giveaway
+       Relancez le tirage.
 
         **Usage:**
         {prefix}giveaway reroll <message_id> <winners_count>
@@ -303,7 +302,7 @@ class GiveawayPlugin(commands.Cog):
 
         # Don't roll if giveaway is active
         if _id in self.active_giveaways:
-            await ctx.send("Sorry, but you can't reroll an active giveaway.")
+            await ctx.send("Désolé, mais vous ne pouvez pas relancer un concours actif.")
             return
 
         async def get_random_user(users, _guild, _winners):
@@ -319,23 +318,23 @@ class GiveawayPlugin(commands.Cog):
         try:
             message = await ctx.channel.fetch_message(int(_id))
         except discord.Forbidden:
-            await ctx.send("No permission to read the history.")
+            await ctx.send("Aucune permission de lire l'historique.")
             return
         except discord.NotFound:
-            await ctx.send("Message not found.")
+            await ctx.send("Message non trouvé.")
             return
 
         if not message.embeds or message.embeds[0] is None:
             await ctx.send(
-                "The given message doesn't have an embed, so it isn't related to a giveaway."
+                "Le message donné n'a pas d'intégration, il n'est donc pas lié à un concours."
             )
             return
 
         if len(message.reactions) <= 0:
             embed = message.embeds[0]
-            embed.description = f"Giveaway has ended!\n\nSadly no one participated :("
+            embed.description = f"Le concours est terminé!\n\nMalheureusement, personne n'a participé :("
             embed.set_footer(
-                text=f"{winners_count} {'winners' if winners_count > 1 else 'winner'} | Ended at"
+                text=f"{winners_count} {'winners' if winners_count > 1 else 'winner'} | Terminé à"
             )
             await message.edit(embed=embed)
             return
@@ -347,7 +346,7 @@ class GiveawayPlugin(commands.Cog):
                 if len(reacted_users) <= 1:
                     embed = message.embeds[0]
                     embed.description = (
-                        f"Giveaway has ended!\n\nSadly no one participated :("
+                        f"Le concours est terminé!\n\nMalheureusement, personne n'a participé :("
                     )
                     await message.edit(embed=embed)
                     del reacted_users, embed
@@ -370,13 +369,13 @@ class GiveawayPlugin(commands.Cog):
                 for winner in winners:
                     winners_text += f"<@{winner}> "
 
-                embed.description = f"Giveaway has ended!\n\n**{'Winners' if winners_count > 1 else 'Winner'}:** {winners_text}"
+                embed.description = f"Le concours est terminé!\n\n**{'Winners' if winners_count > 1 else 'Winner'}:** {winners_text}"
                 embed.set_footer(
-                    text=f"{winners_count} {'winners' if winners_count > 1 else 'winner'} | Ended at"
+                    text=f"{winners_count} {'winners' if winners_count > 1 else 'winner'} | Terminé à"
                 )
                 await message.edit(embed=embed)
                 await ctx.channel.send(
-                    f"🎉 Congratulations {winners_text}, you have won **{embed.title}**!"
+                    f"🎉 Toutes nos félicitations {winners_text}, tu as gagné **{embed.title}**!"
                 )
                 del winners_text, winners, winners_count, reacted_users, embed
                 break
@@ -385,14 +384,14 @@ class GiveawayPlugin(commands.Cog):
     @checks.has_permissions(PermissionLevel.ADMIN)
     async def cancel(self, ctx: commands.Context, _id: str):
         """
-        Stop an active giveaway
+        Arrêter un concours actif
 
         **Usage:**
         {prefix}giveaway stop <message_id>
         """
 
         if _id not in self.active_giveaways:
-            await ctx.send("Couldn't find an active giveaway with that ID!")
+            await ctx.send("Impossible de trouver un concours actif avec cet identifiant!")
             return
 
         giveaway = self.active_giveaways[_id]
@@ -403,17 +402,17 @@ class GiveawayPlugin(commands.Cog):
             await ctx.send("No permission to read the history.")
             return
         except discord.NotFound:
-            await ctx.send("Message not found.")
+            await ctx.send("Message non trouvé.")
             return
 
         if not message.embeds or message.embeds[0] is None:
             await ctx.send(
-                "The given message doesn't have an embed, so it isn't related to a giveaway."
+                "Le message donné n'a pas d'intégration, il n'est donc pas lié à un concours."
             )
             return
 
         embed = message.embeds[0]
-        embed.description = "The giveaway has been cancelled."
+        embed.description = "Le concours a été annulé."
         await message.edit(embed=embed)
         self.active_giveaways.pop(_id)
         await self._update_db()
