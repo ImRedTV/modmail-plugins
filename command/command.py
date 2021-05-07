@@ -6,6 +6,7 @@ class Commande(commands.Cog):
         self.bot = bot
     
     @commands.command()
+    @checks.has_permissions(PermissionLevel.MODERATOR)
     async def ticket(self, ctx):
         await ctx.message.delete()#suprime l'appel
         embed = discord.Embed(
