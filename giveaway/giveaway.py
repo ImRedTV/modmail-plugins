@@ -86,7 +86,7 @@ class GiveawayPlugin(commands.Cog):
                 if len(message.reactions) <= 0:
                     embed = message.embeds[0]
                     embed.description = (
-                        f"Le concours est terminé!\n\nMalheureusement, personne n'a participé :("
+                        f"Le concours est terminé !\n\nMalheureusement, personne n'a participé :("
                     )
                     embed.set_footer(
                         text=f"{giveaway['winners']} {'winners' if giveaway['winners'] > 1 else 'winner'} | Terminé à"
@@ -106,7 +106,7 @@ class GiveawayPlugin(commands.Cog):
                         if len(reacted_users) <= 1:
                             embed = message.embeds[0]
                             embed.description = (
-                                f"Le concours est terminé!\n\nMalheureusement, personne n'a participé"
+                                f"Le concours est terminé !\n\nMalheureusement, personne n'a participé"
                             )
                             embed.set_footer(
                                 text=f"{giveaway['winners']} {'winners' if giveaway['winners'] > 1 else 'winner'} | "
@@ -135,7 +135,7 @@ class GiveawayPlugin(commands.Cog):
                         for winner in winners:
                             winners_text += f"<@{winner}> "
 
-                        embed.description = f"Le concours est terminé!\n\n**{'Winners' if giveaway['winners'] > 1 else 'Winner'}:** {winners_text} "
+                        embed.description = f"Le concours est terminé !\n\n**{'Winners' if giveaway['winners'] > 1 else 'Winner'}:** {winners_text} "
                         embed.set_footer(
                             text=f"{giveaway['winners']} {'winners' if giveaway['winners'] > 1 else 'winner'} | "
                             f"Terminé à"
@@ -190,7 +190,7 @@ class GiveawayPlugin(commands.Cog):
     @giveaway.command(name="start", aliases=["create", "c", "s"])
     async def start(self, ctx: commands.Context, channel: discord.TextChannel):
         """
-        Lancer un concoyrs en mode interactif
+        Lancer un concours
         """
 
         def check(msg: discord.Message):
@@ -202,8 +202,9 @@ class GiveawayPlugin(commands.Cog):
 
         def cancel_check(msg: discord.Message):
             return msg.content == "cancel" or msg.content == f"{ctx.prefix}cancel"
-
-        embed = discord.Embed(colour=0x00FF00)
+        
+        embed.set_thumbnail(url="https://i.imgur.com/Ln7dMfn.png")
+        embed = discord.Embed(colour=0xDAC064)
 
         await ctx.send(embed=self.generate_embed("Quel est le cadeau ?"))
         giveaway_item = await self.bot.wait_for("message", check=check)
@@ -235,8 +236,11 @@ class GiveawayPlugin(commands.Cog):
 
         await ctx.send(
             embed=self.generate_embed(
-                "Combien de temps durera le concours ?\n\n2j / 2jours\n"
-                "2m -> 2 minutes\n2 mois -> 2 mois"
+                "Combien de temps durera le concours ?"
+                "En mois ? Exemple : 1m, 1 month"
+                "En jours ? Exemple : 1d, 2 days, 1 days"
+                "En heure ? Exemple : 1h, 1 hours"
+                "En minutes ? Exemple : 1 minute"
             )
         )
         time_cancel = False
@@ -332,7 +336,7 @@ class GiveawayPlugin(commands.Cog):
 
         if len(message.reactions) <= 0:
             embed = message.embeds[0]
-            embed.description = f"Le concours est terminé!\n\nMalheureusement, personne n'a participé :("
+            embed.description = f"Le concours est terminé !\n\nMalheureusement, personne n'a participé :("
             embed.set_footer(
                 text=f"{winners_count} {'winners' if winners_count > 1 else 'winner'} | Terminé à"
             )
@@ -346,7 +350,7 @@ class GiveawayPlugin(commands.Cog):
                 if len(reacted_users) <= 1:
                     embed = message.embeds[0]
                     embed.description = (
-                        f"Le concours est terminé!\n\nMalheureusement, personne n'a participé :("
+                        f"Le concours est terminé !\n\nMalheureusement, personne n'a participé :("
                     )
                     await message.edit(embed=embed)
                     del reacted_users, embed
@@ -369,7 +373,7 @@ class GiveawayPlugin(commands.Cog):
                 for winner in winners:
                     winners_text += f"<@{winner}> "
 
-                embed.description = f"Le concours est terminé!\n\n**{'Winners' if winners_count > 1 else 'Winner'}:** {winners_text}"
+                embed.description = f"Le concours est terminé !\n\n**{'Winners' if winners_count > 1 else 'Winner'}:** {winners_text}"
                 embed.set_footer(
                     text=f"{winners_count} {'winners' if winners_count > 1 else 'winner'} | Terminé à"
                 )
@@ -384,7 +388,7 @@ class GiveawayPlugin(commands.Cog):
     @checks.has_permissions(PermissionLevel.ADMIN)
     async def cancel(self, ctx: commands.Context, _id: str):
         """
-        Arrêter un concours actif
+        Arrêter un concours actif.
 
         **Usage:**
         {prefix}giveaway stop <message_id>
@@ -416,7 +420,7 @@ class GiveawayPlugin(commands.Cog):
         await message.edit(embed=embed)
         self.active_giveaways.pop(_id)
         await self._update_db()
-        await ctx.send("Cancelled!")
+        await ctx.send("Annulé!")
         return
 
     async def _start_new_giveaway_thread(self, obj):
