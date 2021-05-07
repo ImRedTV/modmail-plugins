@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-class Test1(commands.Cog):
+class Commande(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
@@ -50,4 +50,4 @@ class Test1(commands.Cog):
         await ctx.send(embed=embed)
         
 def setup(bot):
-    bot.add_cog(Test1(bot))
+    bot.add_cog(Commande(bot))
