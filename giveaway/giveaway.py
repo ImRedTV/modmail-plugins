@@ -235,11 +235,7 @@ class GiveawayPlugin(commands.Cog):
 
         await ctx.send(
             embed=self.generate_embed(
-                "Combien de temps durera le concours ?"
-                "En mois ? Exemple : 1m, 1 month"
-                "En jours ? Exemple : 1d, 2 days, 1 days"
-                "En heure ? Exemple : 1h, 1 hours"
-                "En minutes ? Exemple : 1 minute"
+                "Combien de temps durera le concours ?\nEn mois ? Exemple : 1m, 1 month\nEn jours ? Exemple : 1d, 2 days, 1 days\nEn heure ? Exemple : 1h, 1 hours\nEn minutes ? Exemple : 1 minute"
             )
         )
         time_cancel = False
@@ -417,11 +413,11 @@ class GiveawayPlugin(commands.Cog):
             return
 
         embed = message.embeds[0]
-        embed.description = "Le concours a été annulé."
+        embed.description = "Le concours a été annulé avec succès.."
         await message.edit(embed=embed)
         self.active_giveaways.pop(_id)
         await self._update_db()
-        await ctx.send("Annulé!")
+        await ctx.send("Concours annulé avec succès.")
         return
 
     async def _start_new_giveaway_thread(self, obj):
