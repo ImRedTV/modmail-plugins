@@ -12,8 +12,8 @@ def to_emoji(c):
     return chr(base + c)
 
 
-class sondage(commands.Cog):
-    """Sondage système de vote."""
+class sondages(commands.Cog):
+    """sondage système de vote."""
 
     def __init__(self, bot):
         self.bot = bot
@@ -27,7 +27,7 @@ class sondage(commands.Cog):
     @sondage.command()
     @commands.guild_only()
     @checks.has_permissions(PermissionLevel.MODERATOR)
-    async def add(self, ctx, *, question):
+    async def start(self, ctx, *, question):
         """Crée de manière interactive un sondage.
         Pour voter, utilisez des réactions!
         """
@@ -49,7 +49,7 @@ class sondage(commands.Cog):
         for i in range(20):
             messages.append(
                 await ctx.send(
-                    f"Dites une option de sondage ou {ctx.prefix}publier le sondage."
+                    f"Dites une option de sondage ou {ctx.prefix}GO publier le sondage."
                 )
             )
 
@@ -60,7 +60,7 @@ class sondage(commands.Cog):
 
             messages.append(entry)
 
-            if entry.clean_content.startswith(f"{ctx.prefix}done"):
+            if entry.clean_content.startswith(f"{ctx.prefix}GO"):
                 break
 
             answers.append((to_emoji(i), entry.clean_content))
@@ -88,7 +88,7 @@ class sondage(commands.Cog):
     @sondage.command()
     @commands.guild_only()
     @checks.has_permissions(PermissionLevel.MODERATOR)
-    async def rapide(self, ctx, *questions_and_choices: str):
+    async def quick(self, ctx, *questions_and_choices: str):
         """Fait un sondage rapidement.
         Le premier argument est la question et le reste sont les choix.
         par exemple: `!sondage "RED ou LEO?" RED "LEO"`
