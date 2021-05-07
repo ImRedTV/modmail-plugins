@@ -49,5 +49,19 @@ class Commande(commands.Cog):
         embed.set_thumbnail(url="https://i.imgur.com/JpsKGgy.png")
         await ctx.send(embed=embed)
         
+    @commands.command()
+    async def fban(self, ctx, member: discord.Member = None, reason = None):
+        await ctx.message.delete()
+        if not member:
+            embed = discord.Embed(title="Error", description="Veuillez indiquer un utilisateur à bannir !", color=self.bot.error_color)
+            await ctx.send(embed=embed)
+        else:
+            if not reason:
+                embed = discord.Embed(title="Ban", description=f"{member.mention} à été banni!", color=self.color)
+                await ctx.send(embed=embed)
+            else:
+                embed = discord.Embed(title="Ban", description=f"{member.mention} à A été banni pour {reason}!", color=self.color)
+                await ctx.send(embed=embed)
+        
 def setup(bot):
     bot.add_cog(Commande(bot))
