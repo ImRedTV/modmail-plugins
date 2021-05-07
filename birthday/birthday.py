@@ -16,7 +16,7 @@ logger = logging.getLogger("Modmail")
 
 class BirthdayPlugin(commands.Cog):
     """
-    A birthday plugin.
+    Plugin d'anniversaire.
     """
 
     def __init__(self, bot):
@@ -105,7 +105,7 @@ class BirthdayPlugin(commands.Cog):
             today = now.strftime("%d/%m/%Y").split("/")
 
             for user, obj in self.birthdays.items():
-                if obj["month"] != today[1] or obj["day"] != today[0]:
+                if obj["mois"] != today[1] or obj["jours"] != today[0]:
                     continue
                 guild = self.bot.get_guild(int(obj["guild"]))
                 if guild is None:
@@ -123,7 +123,7 @@ class BirthdayPlugin(commands.Cog):
                     channel = guild.get_channel(int(self.channels[obj["guild"]]))
                     if channel is None:
                         continue
-                    age = today[2] - obj["year"]
+                    age = today[2] - obj["année"]
                     await channel.send(
                         self.messages[obj["guild"]]
                         .replace("{user.mention}", member.mention)
@@ -142,7 +142,7 @@ class BirthdayPlugin(commands.Cog):
     @commands.group(invoke_without_command=True)
     async def birthday(self, ctx: commands.Context):
         """
-        Birthday stuff.
+        Anniversaire..
         """
 
         await ctx.send_help(ctx.command)
@@ -151,7 +151,7 @@ class BirthdayPlugin(commands.Cog):
     @birthday.command()
     async def set(self, ctx: commands.Context, date: str):
         """
-        Set your birthdate.
+        Définissez votre date de naissance.
 
         **Format:**
         DD/MM/YYYY
@@ -163,98 +163,98 @@ class BirthdayPlugin(commands.Cog):
         try:
             birthday = date.split("/")
             if int(birthday[1]) > 13:
-                await ctx.send(":x: | Invalid month provided.")
+                await ctx.send(":x: | Mois fourni non valide.")
                 return
             birthday_obj = {}
-            birthday_obj["day"] = int(birthday[0])
-            birthday_obj["month"] = int(birthday[1])
-            birthday_obj["year"] = int(birthday[2])
-            birthday_obj["guild"] = str(ctx.guild.id)
+            birthday_obj["jours"] = int(birthday[0])
+            birthday_obj["mois"] = int(birthday[1])
+            birthday_obj["année"] = int(birthday[2])
+            birthday_obj["serveur"] = str(ctx.guild.id)
 
             self.birthdays[str(ctx.author.id)] = birthday_obj
             await self._update_birthdays()
-            await ctx.send(f"Done! You'r birthday was set to {date}")
+            await ctx.send(f"Fait! Votre anniversaire était fixé à{date}")
             return
         except KeyError:
             logger.info(birthday[0])
             logger.info(birthday[1])
             logger.info(birthday[2])
 
-            await ctx.send("Please check the format of the date")
+            await ctx.send("Veuillez vérifier le format de la date")
             return
         except Exception as e:
-            await ctx.send(f":x: | An error occurred\n```{e}```")
+            await ctx.send(f":x: | Une erreur s'est produite\n```{e}```")
             return
 
     @birthday.command()
     async def clear(self, ctx: commands.Context):
         """
-        Clear your birthday from the database.
+        Effacez votre anniversaire de la base de données.
         """
 
         self.birthdays.pop(str(ctx.author.id))
         await self._update_birthdays()
-        await ctx.send(f"Done!")
+        await ctx.send(f"Fait!")
         return
 
     @birthday.command()
     @checks.has_permissions(PermissionLevel.ADMIN)
     async def channel(self, ctx: commands.Context, channel: discord.TextChannel):
         """
-        Configure a channel for sending birthday announcements
+        Configurer un canal pour l'envoi d'annonces d'anniversaire
         """
 
         self.channels[str(ctx.guild.id)] = str(channel.id)
         await self._update_config()
-        await ctx.send("Done!")
+        await ctx.send("Fait!")
         return
 
     @birthday.command()
     @checks.has_permissions(PermissionLevel.ADMIN)
     async def role(self, ctx: commands.Context, role: discord.Role):
         """
-        Configure a role which will be added to the birthay boizzzz
+        Configurer un rôle qui sera ajouté pour l'anniversaire
         """
 
         self.roles[str(ctx.guild.id)] = str(role.id)
         await self._update_config()
-        await ctx.send("Done!")
+        await ctx.send("Fait!")
         return
 
     @birthday.command()
     @checks.has_permissions(PermissionLevel.ADMIN)
     async def message(self, ctx: commands.Context, *, msg: str):
         """
-        Set a message to announce when wishing someone's birthday
+        Définir un message à annoncer lorsque vous souhaitez l'anniversaire de quelqu'un
 
-        **Formatting:**
-        • {user} - Name of he birthday boi
-        • {user.mention} - Mention the birthday boi
-        • {age} - Age of the birthday boiiii
+        **Mise en page:**
+        • {user} - Nom de l'anniversaire
+        • {user.mention} - Mentionner l'anniversaire
+        • {age} - Âge de l'anniversaire
         """
 
         self.messages[str(ctx.guild.id)] = msg
         await self._update_config()
-        await ctx.send("Done!")
+        await ctx.send("Fait!")
         return
 
     @birthday.command()
     @checks.has_permissions(PermissionLevel.ADMIN)
     async def toggle(self, ctx: commands.Context):
         """
-        Enable / Disable this plugin
+        Activer / désactiver ce plugin
         """
 
         self.enabled = not self.enabled
         await self._update_config()
-        await ctx.send(f"{'Enabled' if self.enabled else 'Disabled'} the plugin :p")
+        await ctx.send(f"{'Activé' if self.enabled else 'Désactivé'} le plugin")
         return
 
     @birthday.command()
     @checks.has_permissions(PermissionLevel.ADMIN)
     async def timezone(self, ctx: commands.Context, timezone: str):
         """
-        Set a timezone
+        Définir un fuseau horaire
         """
 
         if timezone not in pytz.all_timezones:
@@ -262,16 +262,16 @@ class BirthdayPlugin(commands.Cog):
             if len(matches) > 0:
                 embed = discord.Embed()
                 embed.color = 0xEB3446
-                embed.description = f"Did you mean: \n`{'`, `'.join(matches)}`"
+                embed.description = f"Vouliez-vous dire: \n`{'`, `'.join(matches)}`"
                 await ctx.send(embed=embed)
                 return
             else:
-                await ctx.send("Couldn't find the timezone.")
+                await ctx.send("Impossible de trouver le fuseau horaire.")
                 return
 
         self.timezone = timezone
         await self._update_config()
-        await ctx.send("Done")
+        await ctx.send("Fait")
         return
 
 
