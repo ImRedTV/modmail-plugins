@@ -74,7 +74,7 @@ class sondages(commands.Cog):
             color=self.bot.main_color,
             description=f"**{question}**\n{answer}",
         )
-        #embed.set_thumbnail(url="https://i.imgur.com/Ln7dMfn.png")
+        embed.set_thumbnail(url="https://i.imgur.com/Ln7dMfn.png")
         sondage = await ctx.send(embed=embed)
         for emoji, _ in answers:
             await sondage.add_reaction(emoji)
@@ -113,10 +113,10 @@ class sondages(commands.Cog):
 
         if len(questions_and_choices) == 1:
             embed = discord.Embed(
-                title="**📊 SONDAGE**"
+                title="**📊 SONDAGE**",
                 color=self.bot.main_color, description=f"**{question}**"
             )
-            #embed.set_thumbnail(url="https://i.imgur.com/Ln7dMfn.png")
+            embed.set_thumbnail(url="https://i.imgur.com/Ln7dMfn.png")
             sondage = await ctx.send(embed=embed)
             reactions = ["✅", "❌"]
             for emoji in reactions:
