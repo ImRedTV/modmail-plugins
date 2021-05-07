@@ -235,7 +235,7 @@ class GiveawayPlugin(commands.Cog):
 
         await ctx.send(
             embed=self.generate_embed(
-                "**Combien de temps durera le concours ?**\n- En jours ? Exemple : 1d\n- En heure ? Exemple : 1h\n- En minutes ? Exemple : 1m\n- En seconde ? Exemple : 10s"
+                "**Combien de temps durera le concours ?**\n`- En jours ? Exemple : 1days`\n`- En heure ? Exemple : 1h`\n`- En minutes ? Exemple : 1m`\n- `En seconde ? Exemple : 10s`"
             )
         )
         time_cancel = False
@@ -286,7 +286,7 @@ class GiveawayPlugin(commands.Cog):
             "message": msg.id,
         }
         self.active_giveaways[str(msg.id)] = giveaway_obj
-        await ctx.send("Done!")
+        await ctx.send("Terminé !")
         await self._update_db()
         await self._start_new_giveaway_thread(giveaway_obj)
 
