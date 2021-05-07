@@ -208,7 +208,7 @@ class GiveawayPlugin(commands.Cog):
         await ctx.send(embed=self.generate_embed("Quel est le cadeau ?"))
         giveaway_item = await self.bot.wait_for("message", check=check)
         if cancel_check(giveaway_item) is True:
-            await ctx.send("Annulé.")
+            await ctx.send("**Annulé !**")
             return
         embed.title = giveaway_item.content
         await ctx.send(
@@ -216,7 +216,7 @@ class GiveawayPlugin(commands.Cog):
         )
         giveaway_winners = await self.bot.wait_for("message", check=check)
         if cancel_check(giveaway_winners) is True:
-            await ctx.send("Annulé.")
+            await ctx.send("**Annulé !**")
             return
         try:
             giveaway_winners = int(giveaway_winners.content)
@@ -243,7 +243,7 @@ class GiveawayPlugin(commands.Cog):
             giveaway_time = await self.bot.wait_for("message", check=check)
             if cancel_check(giveaway_time) is True:
                 time_cancel = True
-                await ctx.send("Annulé.")
+                await ctx.send("**Annulé !**")
                 break
             resp = await self.bot.session.get(
                 "https://dateparser.hastebin.cc",
@@ -417,7 +417,7 @@ class GiveawayPlugin(commands.Cog):
         await message.edit(embed=embed)
         self.active_giveaways.pop(_id)
         await self._update_db()
-        await ctx.send("Concours annulé avec succès.")
+        await ctx.send("**Concours annulé avec succès !**")
         return
 
     async def _start_new_giveaway_thread(self, obj):
