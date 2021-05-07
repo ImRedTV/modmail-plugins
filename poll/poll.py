@@ -12,15 +12,15 @@ def to_emoji(c):
     return chr(base + c)
 
 
-class sondage(commands.Cog):
+class sondages(commands.Cog):
     """sondage système de vote."""
 
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.group(name="s", invoke_without_command=True)
+    @commands.group(name="sondage", invoke_without_command=True)
     @checks.has_permissions(PermissionLevel.MODERATOR)
-    async def s(self, ctx: commands.Context):
+    async def poll(self, ctx: commands.Context):
         """Créez facilement des sondages."""
         await ctx.send_help(ctx.command)
 
