@@ -8,11 +8,11 @@ from core.models import PermissionLevel
 
 
 def to_emoji(c):
-    base = 0x1F1E6
+    base = 0xDAC064
     return chr(base + c)
 
 
-class sondages(commands.Cog):
+class sondage(commands.Cog):
     """sondage système de vote."""
 
     def __init__(self, bot):
@@ -20,7 +20,7 @@ class sondages(commands.Cog):
 
     @commands.group(name="sondage", invoke_without_command=True)
     @checks.has_permissions(PermissionLevel.MODERATOR)
-    async def poll(self, ctx: commands.Context):
+    async def sondage(self, ctx: commands.Context):
         """Créez facilement des sondages."""
         await ctx.send_help(ctx.command)
 
