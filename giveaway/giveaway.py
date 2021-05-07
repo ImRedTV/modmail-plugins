@@ -203,7 +203,6 @@ class GiveawayPlugin(commands.Cog):
         def cancel_check(msg: discord.Message):
             return msg.content == "cancel" or msg.content == f"{ctx.prefix}cancel"
         
-        embed.set_thumbnail(url="https://i.imgur.com/Ln7dMfn.png")
         embed = discord.Embed(colour=0xDAC064)
 
         await ctx.send(embed=self.generate_embed("Quel est le cadeau ?"))
@@ -278,6 +277,7 @@ class GiveawayPlugin(commands.Cog):
         embed.set_footer(
             text=f"{giveaway_winners} {'winners' if giveaway_winners > 1 else 'winner'} | Fini à"
         )
+        embed.set_thumbnail(url="https://i.imgur.com/Ln7dMfn.png")
         embed.timestamp = datetime.fromtimestamp(giveaway_time)
         msg: discord.Message = await channel.send(embed=embed)
         await msg.add_reaction("🎉")
@@ -349,6 +349,7 @@ class GiveawayPlugin(commands.Cog):
                 reacted_users = await reactions.users().flatten()
                 if len(reacted_users) <= 1:
                     embed = message.embeds[0]
+                    embed.set_thumbnail(url="https://i.imgur.com/Ln7dMfn.png")
                     embed.description = (
                         f"Le concours est terminé !\n\nMalheureusement, personne n'a participé :("
                     )
