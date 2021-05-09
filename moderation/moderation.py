@@ -544,7 +544,7 @@ class Moderation(commands.Cog):
 
     async def log(self, guild: discord.Guild, embed: discord.Embed):
         """Envoie les logs au channel de logs."""
-        channel = await self.db.find_one({"_id": "loggs"})
+        channel = await self.db.find_one({"_id": "cases"})
         if channel == None:
             return
         if not str(guild.id) in channel:
