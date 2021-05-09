@@ -479,15 +479,15 @@ class Moderation(commands.Cog):
     @commands.command(usage="<amount>")
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def clear(self, ctx, amount: int = 1):
-        """Purge the specified amount of messages."""
+        """clear le nombre de messages spécifié."""
         max = 2000
         if amount > max:
             return await ctx.send(
                 embed=discord.Embed(
                     title="Error",
-                    description=f"You can only purge up to 2000 messages.",
+                    description=f"Vous ne pouvez clear que 2000 messages.",
                     color=discord.Color.red(),
-                ).set_footer(text=f"Use {ctx.prefix}nuke to purge the entire chat.")
+                )
             )
         try:
             await ctx.message.delete()
@@ -496,7 +496,7 @@ class Moderation(commands.Cog):
             return await ctx.send(
                 embed=discord.Embed(
                     title="Error",
-                    description="I don't have enough permissions to purge messages.",
+                    description="Je n'ai pas assez d'autorisations pour purger les messages.",
                     color=discord.Color.red(),
                 ).set_footer(text="Veuillez corriger les autorisations.")
             )
@@ -506,37 +506,19 @@ class Moderation(commands.Cog):
         await self.log(
             guild=ctx.guild,
             embed=discord.Embed(
-                title="Purge",
-                description=f"{amount} {messages} {have} been purged by {ctx.author.mention}.",
+                title="Clear",
+                description=f"{amount} {messages} {have} été clear par {ctx.author.mention}.",
                 color=self.bot.main_color,
-            ).set_footer(text=f"C'est le {case} cas"),
+            )
         )
         await ctx.send(
             embed=discord.Embed(
-                title="Success",
-                description=f"Purged {amount} {messages}.",
+                title="Succès",
+                description=f"Clear {amount} {messages}.",
                 color=self.bot.main_color,
-            ).set_footer(text=f"C'est le {case} cas")
+            )
         )
 
-    async def get_case(self):
-        """Gives the case number."""
-        num = await self.db.find_one({"_id": "cases"})
-        if num == None:
-            num = 0
-        elif "amount" in num:
-            num = num["amount"]
-            num = int(num)
-        else:
-            num = 0
-        num += 1
-        await self.db.find_one_and_update(
-            {"_id": "cases"}, {"$set": {"amount": num}}, upsert=True
-        )
-        suffix = ["th", "st", "nd", "rd", "th"][min(num % 10, 4)]
-        if 11 <= (num % 100) <= 13:
-            suffix = "th"
-        return f"{num}{suffix}"
     async def log(self, guild: discord.Guild, embed: discord.Embed):
         """Sends logs to the log channel."""
         channel = await self.db.find_one({"_id": "logging"})
