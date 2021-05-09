@@ -138,7 +138,7 @@ class Moderation(commands.Cog):
             guild=ctx.guild,
             embed=discord.Embed(
                 title="Avertissement",
-                description=f"{member} a été warn par {ctx.author.mention}"
+                description=f"**{member}** a été warn par {ctx.author.mention}"
                 + (f" pour: {reason}" if reason else "."),
                 color=self.bot.main_color,
             )
@@ -150,7 +150,7 @@ class Moderation(commands.Cog):
             return await ctx.send(
                 embed=discord.Embed(
                     title="Logs",
-                    description=f"L'avertissement a été enregistré depuis {member}. Je ne pouvais pas les prévenir, ils ont désactivé les DM.",
+                    description=f"L'avertissement de **{member}** a été enregistré.",
                     color=self.bot.main_color,
                 )
             )
@@ -158,7 +158,7 @@ class Moderation(commands.Cog):
         await ctx.send(
             embed=discord.Embed(
                 title="Success",
-                description=f"{member} a été warn.",
+                description=f"**{member}** a été warn.",
                 color=self.bot.main_color,
             )
         )
@@ -200,7 +200,7 @@ class Moderation(commands.Cog):
             guild=ctx.guild,
             embed=discord.Embed(
                 title="Kick",
-                description=f"{member} a été expulsé par {ctx.author.mention}"
+                description=f"**{member}** a été expulsé par {ctx.author.mention}"
                 + (f" pour: {reason}" if reason else "."),
                 color=self.bot.main_color,
             )
@@ -209,7 +209,7 @@ class Moderation(commands.Cog):
         await ctx.send(
             embed=discord.Embed(
                 title="Success",
-                description=f"{member} has been kicked.",
+                description=f"**{member}** has been kicked.",
                 color=self.bot.main_color,
             )
         )
@@ -251,7 +251,7 @@ class Moderation(commands.Cog):
             guild=ctx.guild,
             embed=discord.Embed(
                 title="Ban",
-                description=f"{member} a été banni par {ctx.author.mention}"
+                description=f"**{member}** a été banni par {ctx.author.mention}"
                 + (f" pour: {reason}" if reason else "."),
                 color=self.bot.main_color,
             )
@@ -260,7 +260,7 @@ class Moderation(commands.Cog):
         await ctx.send(
             embed=discord.Embed(
                 title="Success",
-                description=f"{member} a été banni.",
+                description=f"**{member}** a été banni.",
                 color=self.bot.main_color,
             )
         )
@@ -322,7 +322,7 @@ class Moderation(commands.Cog):
             guild=ctx.guild,
             embed=discord.Embed(
                 title="Mute",
-                description=f"{member} a été mis en sourdine par {ctx.author.mention}"
+                description=f"**{member}** a été mis en sourdine par {ctx.author.mention}"
                 + (f" pour: {reason}" if reason else "."),
                 color=self.bot.main_color,
             )
@@ -331,7 +331,7 @@ class Moderation(commands.Cog):
         await ctx.send(
             embed=discord.Embed(
                 title="Success",
-                description=f"{member} a été mis en sourdine.",
+                description=f"**{member}** a été mis en sourdine.",
                 color=self.bot.main_color,
             )
         )
@@ -384,7 +384,7 @@ class Moderation(commands.Cog):
             guild=ctx.guild,
             embed=discord.Embed(
                 title="Mute",
-                description=f"{member} has been unmuted by {ctx.author.mention}"
+                description=f"**{member}** has been unmuted by {ctx.author.mention}"
                 + (f" pour: {reason}" if reason else "."),
                 color=self.bot.main_color,
             )
@@ -393,7 +393,7 @@ class Moderation(commands.Cog):
         await ctx.send(
             embed=discord.Embed(
                 title="Success",
-                description=f"{member} a été réactivé.",
+                description=f"**{member}** a été réactivé.",
                 color=self.bot.main_color,
             )
         )
