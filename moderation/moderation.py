@@ -413,7 +413,7 @@ class Moderation(commands.Cog):
             embed=discord.Embed(
                 title="Êtes-vous sûr?",
                 description=(
-                    f"Cette commande supprimera **CHAQUE MESSAGE** dans ce channel!\nSi vous êtes sûr et responsable de ce qui pourrait arriver, envoyez **«Oui»**."
+                    f"Cette commande supprimera **CHAQUE MESSAGE** dans ce channel!\nSi vous êtes sûr et responsable de ce qui pourrait arriver, envoyez `oui`."
                 ),
                 color=discord.Color.red(),
             )
@@ -430,7 +430,7 @@ class Moderation(commands.Cog):
             )
             ensured = False
         else:
-            if sure.content == "Oui":
+            if sure.content == "oui":
                 ensured = True
             else:
                 await message.edit(
@@ -459,7 +459,7 @@ class Moderation(commands.Cog):
             await new_channel.send(
                 embed=discord.Embed(
                     title="Nuke",
-                    description="This channel has been nuked!",
+                    description="Ce channel a été bombardé!",
                     color=self.bot.main_color,
                 )
                 .set_image(
