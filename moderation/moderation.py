@@ -496,7 +496,7 @@ class Moderation(commands.Cog):
             return await ctx.send(
                 embed=discord.Embed(
                     title="Error",
-                    description="I don't have enough permissions to purge messages.",
+                    description="Je n'ai pas assez d'autorisations pour purger les messages.",
                     color=discord.Color.red(),
                 ).set_footer(text="Veuillez corriger les autorisations.")
             )
@@ -506,8 +506,8 @@ class Moderation(commands.Cog):
         await self.log(
             guild=ctx.guild,
             embed=discord.Embed(
-                title="Purge",
-                description=f"{amount} {messages} {have} been purged by {ctx.author.mention}.",
+                title="Clear",
+                description=f"**{amount} {messages}** clear par {ctx.author.mention}.",
                 color=self.bot.main_color,
             ),
         )
@@ -519,24 +519,6 @@ class Moderation(commands.Cog):
             )
         )
 
-    async def get_case(self):
-        """Gives the case number."""
-        num = await self.db.find_one({"_id": "cases"})
-        if num == None:
-            num = 0
-        elif "amount" in num:
-            num = num["amount"]
-            num = int(num)
-        else:
-            num = 0
-        num += 1
-        await self.db.find_one_and_update(
-            {"_id": "cases"}, {"$set": {"amount": num}}, upsert=True
-        )
-        suffix = ["th", "st", "nd", "rd", "th"][min(num % 10, 4)]
-        if 11 <= (num % 100) <= 13:
-            suffix = "th"
-        return f"{num}{suffix}"
     async def log(self, guild: discord.Guild, embed: discord.Embed):
         """Sends logs to the log channel."""
         channel = await self.db.find_one({"_id": "logging"})
