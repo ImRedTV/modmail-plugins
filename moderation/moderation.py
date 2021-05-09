@@ -131,7 +131,7 @@ class Moderation(commands.Cog):
         case = await self.get_case()
 
         msg = f"Vous avez été warn de **{ctx.guild.name}**" + (
-            f" pour: {reason}" if reason else "."
+            f" pour : {reason}" if reason else "."
         )
 
         await self.log(
@@ -139,7 +139,7 @@ class Moderation(commands.Cog):
             embed=discord.Embed(
                 title="Avertissement",
                 description=f"**{member}** a été warn par {ctx.author.mention}"
-                + (f" pour: {reason}" if reason else "."),
+                + (f" pour : {reason}" if reason else "."),
                 color=self.bot.main_color,
             )
         )
@@ -175,7 +175,7 @@ class Moderation(commands.Cog):
                 reason = reason + "."
 
         msg = f"Vous avez été expulsé de **{ctx.guild.name}**" + (
-            f" pour: {reason}" if reason else "."
+            f" pour : {reason}" if reason else "."
         )
 
         try:
@@ -201,7 +201,7 @@ class Moderation(commands.Cog):
             embed=discord.Embed(
                 title="Kick",
                 description=f"**{member}** a été expulsé par {ctx.author.mention}"
-                + (f" pour: {reason}" if reason else "."),
+                + (f" pour : {reason}" if reason else "."),
                 color=self.bot.main_color,
             )
         )
@@ -226,7 +226,7 @@ class Moderation(commands.Cog):
                 reason = reason + "."
 
         msg = f"Vous avez été banni de **{ctx.guild.name}**" + (
-            f" pour: {reason}" if reason else "."
+            f" pour : {reason}" if reason else "."
         )
 
         try:
@@ -252,7 +252,7 @@ class Moderation(commands.Cog):
             embed=discord.Embed(
                 title="Ban",
                 description=f"**{member}** a été banni par {ctx.author.mention}"
-                + (f" pour: {reason}" if reason else "."),
+                + (f" pour : {reason}" if reason else "."),
                 color=self.bot.main_color,
             )
         )
@@ -297,7 +297,7 @@ class Moderation(commands.Cog):
             )
 
         msg = f"Vous avez été mute de {ctx.guild.name}" + (
-            f" pour: {reason}" if reason else "."
+            f" pour : {reason}" if reason else "."
         )
 
         try:
@@ -323,7 +323,7 @@ class Moderation(commands.Cog):
             embed=discord.Embed(
                 title="Mute",
                 description=f"**{member}** a été mis en sourdine par {ctx.author.mention}"
-                + (f" pour: {reason}" if reason else "."),
+                + (f" pour : {reason}" if reason else "."),
                 color=self.bot.main_color,
             )
         )
@@ -385,7 +385,7 @@ class Moderation(commands.Cog):
             embed=discord.Embed(
                 title="Mute",
                 description=f"**{member}** has been unmuted by {ctx.author.mention}"
-                + (f" pour: {reason}" if reason else "."),
+                + (f" pour : {reason}" if reason else "."),
                 color=self.bot.main_color,
             )
         )
