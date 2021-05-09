@@ -47,7 +47,7 @@ class Moderation(commands.Cog):
     @commands.command(usage="<channel>")
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def setlog(self, ctx, channel: discord.TextChannel = None):
-        """Configure un canal de journalisation."""
+        """Configure un channel de logs."""
         if channel == None:
             return await ctx.send_help(ctx.command)
 
@@ -169,7 +169,7 @@ class Moderation(commands.Cog):
     @commands.command(usage="<member> [raison]")
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def kick(self, ctx, member: discord.Member = None, *, reason=None):
-        """Kicks the specified member."""
+        """Kicks le membre spécifié."""
         if member == None:
             return await ctx.send_help(ctx.command)
 
@@ -220,7 +220,7 @@ class Moderation(commands.Cog):
     @commands.command(usage="<member> [raison]")
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def ban(self, ctx, member: discord.Member = None, *, reason=None):
-        """Bans the specified member."""
+        """Interdit le membre spécifié."""
         if member == None:
             return await ctx.send_help(ctx.command)
 
@@ -271,7 +271,7 @@ class Moderation(commands.Cog):
     @commands.command(usage="<member> [raison]")
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def mute(self, ctx, member: discord.Member = None, *, reason=None):
-        """mute un membre spécifié."""
+        """mMte un membre spécifié."""
         if member == None:
             return await ctx.send_help(ctx.command)
         role = await self.db.find_one({"_id": "muterole"})
@@ -342,7 +342,7 @@ class Moderation(commands.Cog):
     @commands.command(usage="<member> [raison]")
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def unmute(self, ctx, member: discord.Member = None, *, reason=None):
-        """Unmutes the specified member."""
+        """Rétablit le son du membre spécifié."""
         if member == None:
             return await ctx.send_help(ctx.command)
         role = await self.db.find_one({"_id": "muterole"})
@@ -485,7 +485,7 @@ class Moderation(commands.Cog):
     @commands.command(usage="<amount>")
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def purge(self, ctx, amount: int = 1):
-        """Purge the specified amount of messages."""
+        """Purgez le nombre de messages spécifié."""
         max = 2000
         if amount > max:
             return await ctx.send(
