@@ -479,48 +479,44 @@ class Moderation(commands.Cog):
     @commands.command(usage="<amount>")
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def clear(self, ctx, amount: int = 1):
-        """Clear le nombre de messages spécifié."""
+        """Purge the specified amount of messages."""
         max = 2000
         if amount > max:
             return await ctx.send(
                 embed=discord.Embed(
                     title="Error",
-                    description=f"Vous ne pouvez clear que 2000 messages.",
+                    description=f"You can only purge up to 2000 messages.",
                     color=discord.Color.red(),
-                ).set_footer(text=f"Utiliser {ctx.prefix}nuke pour clear l'ensemble de la discussion.")
+                ).set_footer(text=f"Use {ctx.prefix}nuke to purge the entire chat.")
             )
-
         try:
             await ctx.message.delete()
-            await ctx.channel.clear(limit=amount)
+            await ctx.channel.purge(limit=amount)
         except discord.errors.Forbidden:
             return await ctx.send(
                 embed=discord.Embed(
                     title="Error",
-                    description="Je n'ai pas assez d'autorisations pour clear les messages.",
+                    description="I don't have enough permissions to purge messages.",
                     color=discord.Color.red(),
                 ).set_footer(text="Veuillez corriger les autorisations.")
             )
-
         case = await self.get_case()
         messages = "messages" if amount > 1 else "message"
         have = "have" if amount > 1 else "has"
-
         await self.log(
             guild=ctx.guild,
             embed=discord.Embed(
-                title="Clear",
-                description=f"{amount} {messages} {have} been clear by {ctx.author.mention}.",
+                title="Purge",
+                description=f"{amount} {messages} {have} been purged by {ctx.author.mention}.",
                 color=self.bot.main_color,
-            )
+            ).set_footer(text=f"C'est le {case} cas"),
         )
-
         await ctx.send(
             embed=discord.Embed(
-                title="Succès",
-                description=f"{amount} {messages} messages supprimé.",
+                title="Success",
+                description=f"Purged {amount} {messages}.",
                 color=self.bot.main_color,
-            )
+            ).set_footer(text=f"C'est le {case} cas")
         )
 
     async def get_case(self):
