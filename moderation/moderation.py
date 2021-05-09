@@ -9,7 +9,7 @@ class Moderation(commands.Cog):
     """
     **Commandes pour modérer votre serveur.**
     **NOTE:** Vous aurez besoin de l'autorisation du modérateur
-    afin d'exécuter l'une de ces commandes. *_ _
+    afin d'exécuter l'une de ces commandes._ _
     """
 
     def __init__(self, bot):
