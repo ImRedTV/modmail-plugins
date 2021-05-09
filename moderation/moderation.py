@@ -20,10 +20,10 @@ class Moderation(commands.Cog):
         if isinstance(error, commands.CheckFailure):
             return await ctx.send(
                 embed=discord.Embed(
-                    title="Error",
-                    description="Vous n'avez pas assez d'autorisations pour exécuter cette commande!",
+                    title="Erreur",
+                    description="Vous n'avez pas assez d'autorisations pour exécuter cette commande !",
                     color=discord.Color.red(),
-                ).set_footer(text="Êtes-vous un modérateur?")
+                )
             )
         raise error
 
@@ -61,7 +61,7 @@ class Moderation(commands.Cog):
         except discord.errors.Forbidden:
             await ctx.send(
                 embed=discord.Embed(
-                    title="Error",
+                    title="Erreur",
                     description="Je n'ai pas assez d'autorisations pour écrire dans ce canal.",
                     color=discord.Color.red(),
                 ).set_footer(text="Veuillez corriger les autorisations.")
@@ -94,7 +94,7 @@ class Moderation(commands.Cog):
                 ):
                     return await ctx.send(
                         embed=discord.Embed(
-                            title="Error",
+                            title="Erreur",
                             description="Le rôle muet est déjà configuré.",
                             color=discord.Color.red(),
                         ).set_footer(
@@ -188,7 +188,7 @@ class Moderation(commands.Cog):
         except discord.errors.Forbidden:
             return await ctx.send(
                 embed=discord.Embed(
-                    title="Error",
+                    title="Erreur",
                     description="Je n'ai pas assez d'autorisations pour les expulser.",
                     color=discord.Color.red(),
                 ).set_footer(text="Veuillez corriger les autorisations.")
@@ -239,7 +239,7 @@ class Moderation(commands.Cog):
         except discord.errors.Forbidden:
             return await ctx.send(
                 embed=discord.Embed(
-                    title="Error",
+                    title="Erreur",
                     description="Je n'ai pas assez d'autorisations pour les interdire. ",
                     color=discord.Color.red(),
                 ).set_footer(text="Veuillez corriger les autorisations.")
@@ -287,7 +287,7 @@ class Moderation(commands.Cog):
         if no_role:
             return await ctx.send(
                 embed=discord.Embed(
-                    title="Error",
+                    title="Erreur",
                     description=(
                         "Vous devez d'abord configurer un rôle muet.\n"
                         f"Pour en définir un, exécutez `{ctx.prefix}muterole (@role)`."
@@ -310,7 +310,7 @@ class Moderation(commands.Cog):
         except discord.errors.Forbidden:
             return await ctx.send(
                 embed=discord.Embed(
-                    title="Error",
+                    title="Erreur",
                     description="Je n'ai pas assez d'autorisations pour les désactiver.",
                     color=discord.Color.red(),
                 ).set_footer(text="Veuillez corriger les autorisations.")
@@ -358,7 +358,7 @@ class Moderation(commands.Cog):
         if no_role:
             return await ctx.send(
                 embed=discord.Embed(
-                    title="Error",
+                    title="Erreur",
                     description=(
                         "You don't have a muted role set up.\n"
                         f"You will have to unmute them manually."
@@ -372,7 +372,7 @@ class Moderation(commands.Cog):
         except discord.errors.Forbidden:
             return await ctx.send(
                 embed=discord.Embed(
-                    title="Error",
+                    title="Erreur",
                     description="Je n'ai pas assez d'autorisations pour les réactiver.",
                     color=discord.Color.red(),
                 ).set_footer(text="Veuillez corriger les autorisations.")
@@ -449,7 +449,7 @@ class Moderation(commands.Cog):
             except discord.errors.Forbidden:
                 return await ctx.send(
                     embed=discord.Embed(
-                        title="Error",
+                        title="Erreur",
                         description=f"Je n'ai pas assez d'autorisations pour bombarder {tot} channel.",
                         color=discord.Color.red(),
                     ).set_footer(text="Veuillez corriger les autorisations.")
@@ -484,7 +484,7 @@ class Moderation(commands.Cog):
         if amount > max:
             return await ctx.send(
                 embed=discord.Embed(
-                    title="Error",
+                    title="Erreur",
                     description=f"Vous ne pouvez clear que 2000 messages.",
                     color=discord.Color.red(),
                 )
@@ -495,7 +495,7 @@ class Moderation(commands.Cog):
         except discord.errors.Forbidden:
             return await ctx.send(
                 embed=discord.Embed(
-                    title="Error",
+                    title="Erreur",
                     description="Je n'ai pas assez d'autorisations pour purger les messages.",
                     color=discord.Color.red(),
                 ).set_footer(text="Veuillez corriger les autorisations.")
