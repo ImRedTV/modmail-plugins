@@ -74,7 +74,7 @@ class Moderation(commands.Cog):
             )
             await ctx.send(
                 embed=discord.Embed(
-                    title="Success",
+                    title="Succès",
                     description=f"{channel.mention} a été configuré comme canal de logs.",
                     color=self.bot.main_color,
                 )
@@ -109,7 +109,7 @@ class Moderation(commands.Cog):
 
         await ctx.send(
             embed=discord.Embed(
-                title="Success",
+                title="Succès",
                 description=f"Le rôle muet a été défini sur {role.mention}.",
                 color=self.bot.main_color,
             )
@@ -157,7 +157,7 @@ class Moderation(commands.Cog):
 
         await ctx.send(
             embed=discord.Embed(
-                title="Success",
+                title="Succès",
                 description=f"**{member}** a été warn.",
                 color=self.bot.main_color,
             )
@@ -208,7 +208,7 @@ class Moderation(commands.Cog):
 
         await ctx.send(
             embed=discord.Embed(
-                title="Success",
+                title="Succès",
                 description=f"**{member}** has been kicked.",
                 color=self.bot.main_color,
             )
@@ -250,7 +250,7 @@ class Moderation(commands.Cog):
         await self.log(
             guild=ctx.guild,
             embed=discord.Embed(
-                title="Ban",
+                title="Bannissement",
                 description=f"**{member}** a été banni par {ctx.author.mention}"
                 + (f" pour : {reason}" if reason else "."),
                 color=self.bot.main_color,
@@ -259,7 +259,7 @@ class Moderation(commands.Cog):
 
         await ctx.send(
             embed=discord.Embed(
-                title="Success",
+                title="Succès",
                 description=f"**{member}** a été banni.",
                 color=self.bot.main_color,
             )
@@ -330,7 +330,7 @@ class Moderation(commands.Cog):
 
         await ctx.send(
             embed=discord.Embed(
-                title="Success",
+                title="Succès",
                 description=f"**{member}** a été mis en sourdine.",
                 color=self.bot.main_color,
             )
@@ -392,7 +392,7 @@ class Moderation(commands.Cog):
 
         await ctx.send(
             embed=discord.Embed(
-                title="Success",
+                title="Succès",
                 description=f"**{member}** a été réactivé.",
                 color=self.bot.main_color,
             )
@@ -517,7 +517,7 @@ class Moderation(commands.Cog):
 
         await ctx.send(
             embed=discord.Embed(
-                title="Success",
+                title="Succès",
                 description=f"{amount} {messages} messages supprimé.",
                 color=self.bot.main_color,
             )
