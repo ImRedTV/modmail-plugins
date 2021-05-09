@@ -507,13 +507,13 @@ class Moderation(commands.Cog):
             guild=ctx.guild,
             embed=discord.Embed(
                 title="Clear",
-                description=f"**{amount} {messages}** clear par {ctx.author.mention}.",
+                description=f"**{amount} {messages}** supprimés par {ctx.author.mention}.",
                 color=self.bot.main_color,
             ),
         )
         await ctx.send(
             embed=discord.Embed(
-                title=f"Clear {amount} {messages}.",
+                title=f"{amount} {messages} supprimés.",
                 color=self.bot.main_color,
             )
         )
