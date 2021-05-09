@@ -524,27 +524,26 @@ class Moderation(commands.Cog):
         )
 
     async def get_case(self):
-        """Donne le numéro de dossier."""
+        """Gives the case number."""
         num = await self.db.find_one({"_id": "cases"})
         if num == None:
             num = 0
-        elif "montant" in num:
-            num = num["montant"]
+        elif "amount" in num:
+            num = num["amount"]
             num = int(num)
         else:
             num = 0
         num += 1
         await self.db.find_one_and_update(
-            {"_id": "cases"}, {"$set": {"montant": num}}, upsert=True
+            {"_id": "cases"}, {"$set": {"amount": num}}, upsert=True
         )
         suffix = ["th", "st", "nd", "rd", "th"][min(num % 10, 4)]
         if 11 <= (num % 100) <= 13:
             suffix = "th"
         return f"{num}{suffix}"
-
     async def log(self, guild: discord.Guild, embed: discord.Embed):
-        """Envoie les logs au channel de logs."""
-        channel = await self.db.find_one({"_id": "cases"})
+        """Sends logs to the log channel."""
+        channel = await self.db.find_one({"_id": "logging"})
         if channel == None:
             return
         if not str(guild.id) in channel:
@@ -553,7 +552,5 @@ class Moderation(commands.Cog):
         if channel == None:
             return
         return await channel.send(embed=embed)
-
-
 def setup(bot):
     bot.add_cog(Moderation(bot))
