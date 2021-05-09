@@ -479,7 +479,7 @@ class Moderation(commands.Cog):
     @commands.command(usage="<amount>")
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def clear(self, ctx, amount: int = 1):
-        """clear le nombre de messages spécifié."""
+        """Clear le nombre de messages spécifié."""
         max = 2000
         if amount > max:
             return await ctx.send(
@@ -496,7 +496,7 @@ class Moderation(commands.Cog):
             return await ctx.send(
                 embed=discord.Embed(
                     title="Error",
-                    description="Je n'ai pas assez d'autorisations pour purger les messages.",
+                    description="I don't have enough permissions to purge messages.",
                     color=discord.Color.red(),
                 ).set_footer(text="Veuillez corriger les autorisations.")
             )
@@ -506,10 +506,10 @@ class Moderation(commands.Cog):
         await self.log(
             guild=ctx.guild,
             embed=discord.Embed(
-                title="Clear",
-                description=f"{amount} {messages} {have} été clear par {ctx.author.mention}.",
+                title="Purge",
+                description=f"{amount} {messages} {have} been purged by {ctx.author.mention}.",
                 color=self.bot.main_color,
-            )
+            ),
         )
         await ctx.send(
             embed=discord.Embed(
