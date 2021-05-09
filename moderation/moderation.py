@@ -6,10 +6,10 @@ from core.models import PermissionLevel
 
 
 class Moderation(commands.Cog):
-   "**Commandes pour modérer votre serveur.**\n"
-   "**NOTE:** Vous aurez besoin de l'autorisation du modérateur\n"
-   "afin d'exécuter l'une de ces commandes."
-    
+    """
+    **Commandes pour modérer votre serveur.**
+    """
+
     def __init__(self, bot):
         self.bot = bot
         self.db = bot.api.get_plugin_partition(self)
