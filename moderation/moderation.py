@@ -159,7 +159,7 @@ class Moderation(commands.Cog):
         await ctx.send(
             embed=discord.Embed(
                 title="Success",
-                description=f"{member} has been warned.",
+                description=f"{member} a été averti.",
                 color=self.bot.main_color,
             )
         )
@@ -413,10 +413,8 @@ class Moderation(commands.Cog):
             embed=discord.Embed(
                 title="Êtes-vous sûr?",
                 description=(
-                    f"Cette commande supprimera CHAQUE MESSAGE {tot} canal!\n"
-                    'Si vous êtes sûr et responsable de ce qui pourrait arriver, envoyez «Oui, faites ce que je vous dis!". '
-                    "Sinon, envoyez autre chose pour abandonner.\n"
-                    "**De mauvaises choses inattendues peuvent arriver si vous décidez de continuer!**"
+                    f"Cette commande supprimera **CHAQUE MESSAGE** dans ce channel!\n"
+                    'Si vous êtes sûr, envoyez **«Oui»**."
                 ),
                 color=discord.Color.red(),
             )
@@ -429,15 +427,15 @@ class Moderation(commands.Cog):
             sure = await self.bot.wait_for("message", check=surecheck, timeout=30)
         except asyncio.TimeoutError:
             await message.edit(
-                embed=discord.Embed(title="Aborted.", color=self.bot.main_color)
+                embed=discord.Embed(title="Annulé.", color=self.bot.main_color)
             )
             ensured = False
         else:
-            if sure.content == "Yes, do as I say!":
+            if sure.content == "Oui":
                 ensured = True
             else:
                 await message.edit(
-                    embed=discord.Embed(title="Aborted.", color=self.bot.main_color)
+                    embed=discord.Embed(title="Annulé.", color=self.bot.main_color)
                 )
                 ensured = False
         if ensured:
@@ -454,7 +452,7 @@ class Moderation(commands.Cog):
                 return await ctx.send(
                     embed=discord.Embed(
                         title="Error",
-                        description=f"I don't have enough permissions to nuke {tot} channel.",
+                        description=f"Je n'ai pas assez d'autorisations pour bombarder {tot} channel.",
                         color=discord.Color.red(),
                     ).set_footer(text="Veuillez corriger les autorisations.")
                 )
@@ -482,26 +480,26 @@ class Moderation(commands.Cog):
 
     @commands.command(usage="<amount>")
     @checks.has_permissions(PermissionLevel.MODERATOR)
-    async def purge(self, ctx, amount: int = 1):
-        """Purgez le nombre de messages spécifié."""
+    async def clear(self, ctx, amount: int = 1):
+        """Clear le nombre de messages spécifié."""
         max = 2000
         if amount > max:
             return await ctx.send(
                 embed=discord.Embed(
                     title="Error",
-                    description=f"You can only purge up to 2000 messages.",
+                    description=f"Vous ne pouvez clear que 2000 messages.",
                     color=discord.Color.red(),
-                ).set_footer(text=f"Use {ctx.prefix}nuke to purge the entire chat.")
+                ).set_footer(text=f"Utiliser {ctx.prefix}nuke pour clear l'ensemble de la discussion.")
             )
 
         try:
             await ctx.message.delete()
-            await ctx.channel.purge(limit=amount)
+            await ctx.channel.clear(limit=amount)
         except discord.errors.Forbidden:
             return await ctx.send(
                 embed=discord.Embed(
                     title="Error",
-                    description="I don't have enough permissions to purge messages.",
+                    description="Je n'ai pas assez d'autorisations pour clear les messages.",
                     color=discord.Color.red(),
                 ).set_footer(text="Veuillez corriger les autorisations.")
             )
@@ -513,8 +511,8 @@ class Moderation(commands.Cog):
         await self.log(
             guild=ctx.guild,
             embed=discord.Embed(
-                title="Purge",
-                description=f"{amount} {messages} {have} been purged by {ctx.author.mention}.",
+                title="Clear",
+                description=f"{amount} {messages} {have} been clear by {ctx.author.mention}.",
                 color=self.bot.main_color,
             )
         )
@@ -522,24 +520,24 @@ class Moderation(commands.Cog):
         await ctx.send(
             embed=discord.Embed(
                 title="Success",
-                description=f"Purged {amount} {messages}.",
+                description=f"{amount} {messages} messages supprimé.",
                 color=self.bot.main_color,
             )
         )
 
     async def get_case(self):
-        """Gives the case number."""
+        """Donne le numéro de dossier."""
         num = await self.db.find_one({"_id": "cases"})
         if num == None:
             num = 0
-        elif "amount" in num:
-            num = num["amount"]
+        elif "montant" in num:
+            num = num["montant"]
             num = int(num)
         else:
             num = 0
         num += 1
         await self.db.find_one_and_update(
-            {"_id": "cases"}, {"$set": {"amount": num}}, upsert=True
+            {"_id": "cases"}, {"$set": {"montant": num}}, upsert=True
         )
         suffix = ["th", "st", "nd", "rd", "th"][min(num % 10, 4)]
         if 11 <= (num % 100) <= 13:
@@ -547,8 +545,8 @@ class Moderation(commands.Cog):
         return f"{num}{suffix}"
 
     async def log(self, guild: discord.Guild, embed: discord.Embed):
-        """Sends logs to the log channel."""
-        channel = await self.db.find_one({"_id": "logging"})
+        """Envoie les logs au channel de logs."""
+        channel = await self.db.find_one({"_id": "loggs"})
         if channel == None:
             return
         if not str(guild.id) in channel:
