@@ -506,14 +506,14 @@ class Moderation(commands.Cog):
         await self.log(
             guild=ctx.guild,
             embed=discord.Embed(
-                title=f"**{amount} {messages}** clear par {ctx.author.mention}.",
+                title="Clear",
+                description=f"**{amount} {messages}** clear par {ctx.author.mention}.",
                 color=self.bot.main_color,
             ),
         )
         await ctx.send(
             embed=discord.Embed(
-                title="Succès",
-                description=f"Clear {amount} {messages}.",
+                title=f"Clear {amount} {messages}.",
                 color=self.bot.main_color,
             )
         )
