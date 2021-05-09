@@ -271,7 +271,7 @@ class Moderation(commands.Cog):
     @commands.command(usage="<member> [raison]")
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def mute(self, ctx, member: discord.Member = None, *, reason=None):
-        """mMte un membre spécifié."""
+        """Mute un membre spécifié."""
         if member == None:
             return await ctx.send_help(ctx.command)
         role = await self.db.find_one({"_id": "muterole"})
