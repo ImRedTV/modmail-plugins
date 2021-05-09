@@ -120,7 +120,7 @@ class Moderation(commands.Cog):
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def warn(self, ctx, member: discord.Member = None, *, reason=None):
         """
-        Avertit le membre spécifié.
+        Warn un membre.
         """
         if member == None:
             return await ctx.send_help(ctx.command)
@@ -131,7 +131,7 @@ class Moderation(commands.Cog):
 
         case = await self.get_case()
 
-        msg = f"Vous avez été averti en {ctx.guild.name}" + (
+        msg = f"Vous avez été warn de **{ctx.guild.name}**" + (
             f" pour: {reason}" if reason else "."
         )
 
@@ -139,7 +139,7 @@ class Moderation(commands.Cog):
             guild=ctx.guild,
             embed=discord.Embed(
                 title="Avertissement",
-                description=f"{member} a été averti par {ctx.author.mention}"
+                description=f"{member} a été warn par {ctx.author.mention}"
                 + (f" pour: {reason}" if reason else "."),
                 color=self.bot.main_color,
             )
@@ -159,7 +159,7 @@ class Moderation(commands.Cog):
         await ctx.send(
             embed=discord.Embed(
                 title="Success",
-                description=f"{member} a été averti.",
+                description=f"{member} a été warn.",
                 color=self.bot.main_color,
             )
         )
@@ -167,7 +167,7 @@ class Moderation(commands.Cog):
     @commands.command(usage="<member> [raison]")
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def kick(self, ctx, member: discord.Member = None, *, reason=None):
-        """Kicks le membre spécifié."""
+        """Kicks un membre."""
         if member == None:
             return await ctx.send_help(ctx.command)
 
@@ -175,7 +175,7 @@ class Moderation(commands.Cog):
             if not reason.endswith("."):
                 reason = reason + "."
 
-        msg = f"Vous avez été expulsé de {ctx.guild.name}" + (
+        msg = f"Vous avez été expulsé de **{ctx.guild.name}**" + (
             f" pour: {reason}" if reason else "."
         )
 
@@ -218,7 +218,7 @@ class Moderation(commands.Cog):
     @commands.command(usage="<member> [raison]")
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def ban(self, ctx, member: discord.Member = None, *, reason=None):
-        """Interdit le membre spécifié."""
+        """Banni un membre."""
         if member == None:
             return await ctx.send_help(ctx.command)
 
@@ -226,7 +226,7 @@ class Moderation(commands.Cog):
             if not reason.endswith("."):
                 reason = reason + "."
 
-        msg = f"Vous avez été banni de {ctx.guild.name}" + (
+        msg = f"Vous avez été banni de **{ctx.guild.name}**" + (
             f" pour: {reason}" if reason else "."
         )
 
@@ -269,7 +269,7 @@ class Moderation(commands.Cog):
     @commands.command(usage="<member> [raison]")
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def mute(self, ctx, member: discord.Member = None, *, reason=None):
-        """Mute un membre spécifié."""
+        """Mute un membre."""
         if member == None:
             return await ctx.send_help(ctx.command)
         role = await self.db.find_one({"_id": "muterole"})
