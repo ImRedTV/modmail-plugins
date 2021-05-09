@@ -53,8 +53,7 @@ class Moderation(commands.Cog):
             await channel.send(
                 embed=discord.Embed(
                     description=(
-                        "Ce canal a été configuré pour consigner les actions. \n "
-                        "Cela signifie que j'enverrai les bannissements/warn/kick."
+                        "Ce canal a été configuré pour consigner les logs. "
                     ),
                     color=self.bot.main_color,
                 )
