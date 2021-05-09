@@ -413,10 +413,7 @@ class Moderation(commands.Cog):
             embed=discord.Embed(
                 title="Êtes-vous sûr?",
                 description=(
-                    f"Cette commande supprimera CHAQUE MESSAGE dans ce channel!\n"
-                    'Si vous êtes sûr et responsable de ce qui pourrait arriver, envoyez «Oui»." '
-                    "Sinon, envoyez autre chose pour abandonner.\n"
-                    "**De mauvaises choses inattendues peuvent arriver si vous décidez de continuer!**"
+                    f"Cette commande supprimera **CHAQUE MESSAGE** dans ce channel!\nSi vous êtes sûr et responsable de ce qui pourrait arriver, envoyez **«Oui»**."
                 ),
                 color=discord.Color.red(),
             )
