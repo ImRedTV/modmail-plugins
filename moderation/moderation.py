@@ -8,7 +8,7 @@ from core.models import PermissionLevel
 class Moderation(commands.Cog):
     """
     **Commandes pour modérer votre serveur.**
-    **NOTE:** Vous aurez besoin de l'autorisation du modérateur
+    *NOTE:** Vous aurez besoin de l'autorisation du modérateur
     afin d'exécuter l'une de ces commandes._ _
     """
 
