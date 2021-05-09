@@ -142,7 +142,7 @@ class Moderation(commands.Cog):
                 description=f"{member} a été averti par {ctx.author.mention}"
                 + (f" pour: {reason}" if reason else "."),
                 color=self.bot.main_color,
-            ).set_footer(text=f"C'est le {case} cas"),
+            )
         )
 
         try:
@@ -153,7 +153,7 @@ class Moderation(commands.Cog):
                     title="Logs",
                     description=f"L'avertissement a été enregistré depuis {member}. Je ne pouvais pas les prévenir, ils ont désactivé les DM.",
                     color=self.bot.main_color,
-                ).set_footer(text=f"C'est le {case} cas")
+                )
             )
 
         await ctx.send(
@@ -161,7 +161,7 @@ class Moderation(commands.Cog):
                 title="Success",
                 description=f"{member} has been warned.",
                 color=self.bot.main_color,
-            ).set_footer(text=f"C'est le {case} cas")
+            )
         )
 
     @commands.command(usage="<member> [raison]")
@@ -204,7 +204,7 @@ class Moderation(commands.Cog):
                 description=f"{member} a été expulsé par {ctx.author.mention}"
                 + (f" pour: {reason}" if reason else "."),
                 color=self.bot.main_color,
-            ).set_footer(text=f"C'est le {case} cas"),
+            )
         )
 
         await ctx.send(
@@ -212,7 +212,7 @@ class Moderation(commands.Cog):
                 title="Success",
                 description=f"{member} has been kicked.",
                 color=self.bot.main_color,
-            ).set_footer(text=f"C'est le {case} cas")
+            )
         )
 
     @commands.command(usage="<member> [raison]")
@@ -255,7 +255,7 @@ class Moderation(commands.Cog):
                 description=f"{member} a été banni par {ctx.author.mention}"
                 + (f" pour: {reason}" if reason else "."),
                 color=self.bot.main_color,
-            ).set_footer(text=f"C'est le {case} cas"),
+            )
         )
 
         await ctx.send(
@@ -263,7 +263,7 @@ class Moderation(commands.Cog):
                 title="Success",
                 description=f"{member} a été banni.",
                 color=self.bot.main_color,
-            ).set_footer(text=f"C'est le {case} cas")
+            )
         )
 
     @commands.command(usage="<member> [raison]")
@@ -326,7 +326,7 @@ class Moderation(commands.Cog):
                 description=f"{member} a été mis en sourdine par {ctx.author.mention}"
                 + (f" pour: {reason}" if reason else "."),
                 color=self.bot.main_color,
-            ).set_footer(text=f"C'est le {case} cas"),
+            )
         )
 
         await ctx.send(
@@ -334,7 +334,7 @@ class Moderation(commands.Cog):
                 title="Success",
                 description=f"{member} a été mis en sourdine.",
                 color=self.bot.main_color,
-            ).set_footer(text=f"C'est le {case} cas")
+            )
         )
 
     @commands.command(usage="<member> [raison]")
@@ -388,7 +388,7 @@ class Moderation(commands.Cog):
                 description=f"{member} has been unmuted by {ctx.author.mention}"
                 + (f" pour: {reason}" if reason else "."),
                 color=self.bot.main_color,
-            ).set_footer(text=f"C'est le {case} cas"),
+            )
         )
 
         await ctx.send(
@@ -396,7 +396,7 @@ class Moderation(commands.Cog):
                 title="Success",
                 description=f"{member} a été réactivé.",
                 color=self.bot.main_color,
-            ).set_footer(text=f"C'est le {case} cas")
+            )
         )
 
     @commands.command()
@@ -468,7 +468,7 @@ class Moderation(commands.Cog):
                 .set_image(
                     url="https://cdn.discordapp.com/attachments/600843048724987925/600843407228928011/tenor.gif"
                 )
-                .set_footer(text=f"C'est le {case} cas")
+                
             )
 
             await self.log(
@@ -477,7 +477,7 @@ class Moderation(commands.Cog):
                     title="Nuke",
                     description=f"{ctx.author.mention} nuked {new_channel.mention}.",
                     color=self.bot.main_color,
-                ).set_footer(text=f"C'est le {case} cas"),
+                )
             )
 
     @commands.command(usage="<amount>")
@@ -516,7 +516,7 @@ class Moderation(commands.Cog):
                 title="Purge",
                 description=f"{amount} {messages} {have} been purged by {ctx.author.mention}.",
                 color=self.bot.main_color,
-            ).set_footer(text=f"C'est le {case} cas"),
+            )
         )
 
         await ctx.send(
@@ -524,7 +524,7 @@ class Moderation(commands.Cog):
                 title="Success",
                 description=f"Purged {amount} {messages}.",
                 color=self.bot.main_color,
-            ).set_footer(text=f"C'est le {case} cas")
+            )
         )
 
     async def get_case(self):
