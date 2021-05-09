@@ -138,7 +138,7 @@ class Moderation(commands.Cog):
             guild=ctx.guild,
             embed=discord.Embed(
                 title="Avertissement",
-                description=f"**{member}** a été warn par {ctx.author.mention}"
+                description=f"**{ctx.member.mention}** a été warn par {ctx.author.mention}"
                 + (f" pour: {reason}" if reason else "."),
                 color=self.bot.main_color,
             )
