@@ -8,7 +8,7 @@ class Commande(commands.Cog):
         self.bot = bot
     
     @commands.command()
-    async def ticket(self, ctx):
+    async def ip(self, ctx):
         await ctx.message.delete()#suprime l'appel
         embed = discord.Embed(
             title="**Information de connecxion**",
