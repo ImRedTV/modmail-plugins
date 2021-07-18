@@ -15,6 +15,8 @@ class Commande(commands.Cog):
             description="```Utilisez la console FiveM.\n - F8 dans le menu\n - play.sunnyisland.fr:30120 (Whitelist)```",
             color=0x93D929)
         
+        await ctx.send(embed=embed)
+        
 def setup(bot):
     bot.add_cog(Commande(bot))
 
