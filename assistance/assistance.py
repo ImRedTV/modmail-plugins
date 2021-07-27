@@ -11,7 +11,7 @@ class Commande(commands.Cog):
     async def ip(self, ctx):
         await ctx.message.delete()#suprime l'appel
         embed = discord.Embed(
-            description="connect play.sunnyisland.fr:30120",
+            description="connect s1.sunnyisland.fr",
             color=0x93D929)
         
         await ctx.send(embed=embed)
