@@ -183,7 +183,7 @@ class Sticky(commands.Cog):
 
     @commands.group(name="stick", usage="<counter> <cooldown (default is 30 seconds)>", invoke_without_command=True)
     @checks.has_permissions(PermissionLevel.MOD)
-    async def stick_(self, ctx: commands.Context, max_counter: int, cooldown: Optional[int] = 30):
+    async def stick_(self, ctx: commands.Context, max_counter: 10, cooldown: Optional[int] = 30):
         """
         Stick a message to a channel
 
