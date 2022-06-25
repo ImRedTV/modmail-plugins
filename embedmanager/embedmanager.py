@@ -192,7 +192,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         """
         embed = data
         await ctx.send(embed=embed)
-        await ctx.message.add_reaction(YES_EMOJI)
+        await ctx.message.delete()#suprime l'appel
 
     @_embed.command(name="fromfile", aliases=["fromjsonfile", "fromdatafile"])
     @checks.has_permissions(PermissionLevel.MODERATOR)
@@ -203,7 +203,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         data = await self.get_file_from_message(ctx, file_types=("json", "txt"))
         embed = await JSON_CONTENT_CONVERTER.convert(ctx, data)
         await ctx.send(embed=embed)
-        await ctx.message.add_reaction(YES_EMOJI)
+        await ctx.message.delete()#suprime l'appel
 
     @_embed.command(name="message", aliases=["frommsg", "frommessage"])
     @checks.has_permissions(PermissionLevel.MODERATOR)
@@ -290,7 +290,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         color = color or self.bot.main_color
         embed = discord.Embed(color=color, title=title, description=description)
         await message.edit(embed=embed)
-        await ctx.message.add_reaction(YES_EMOJI)
+        await ctx.message.delete()#suprime l'appel
 
     @embed_edit.command(name="json", aliases=["fromjson", "fromdata"])
     @checks.has_permissions(PermissionLevel.MODERATOR)
@@ -316,7 +316,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         data = await self.get_file_from_message(ctx, file_types=("json", "txt"))
         embed = await JSON_CONVERTER.convert(ctx, data)
         await message.edit(embed=embed)
-        await ctx.message.add_reaction(YES_EMOJI)
+        await ctx.message.delete()#suprime l'appel
 
     @embed_edit.command(name="message", aliases=["frommsg", "frommessage"])
     @checks.has_permissions(PermissionLevel.MODERATOR)
@@ -338,7 +338,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         """
         embed = await self.get_embed_from_message(source, index)
         await target.edit(embed=embed)
-        await ctx.message.add_reaction(YES_EMOJI)
+        await ctx.message.delete()#suprime l'appel
 
     @_embed.group(name="store", usage="<option>", invoke_without_command=True)
     @checks.has_permissions(PermissionLevel.MODERATOR)
@@ -369,7 +369,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         embed = discord.Embed(color=color, title=title, description=description)
         await ctx.send(embed=embed)
         await self.store_embed(ctx, name, embed)
-        await ctx.message.add_reaction(YES_EMOJI)
+        await ctx.message.delete()#suprime l'appel
 
     @embed_store.command(name="json", aliases=["fromjson", "fromdata"])
     @checks.has_permissions(PermissionLevel.MODERATOR)
@@ -378,7 +378,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         Store an embed from valid JSON.
         """
         await self.store_embed(ctx, name, data)
-        await ctx.message.add_reaction(YES_EMOJI)
+        await ctx.message.delete()#suprime l'appel
 
     @embed_store.command(name="fromfile", aliases=["fromjsonfile", "fromdatafile"])
     @checks.has_permissions(PermissionLevel.MODERATOR)
@@ -389,7 +389,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         data = await self.get_file_from_message(ctx, file_types=("json", "txt"))
         embed = await JSON_CONVERTER.convert(ctx, data)
         await self.store_embed(ctx, name, embed)
-        await ctx.message.add_reaction(YES_EMOJI)
+        await ctx.message.delete()#suprime l'appel
 
     @embed_store.command(name="message", aliases=["frommsg", "frommessage"])
     @checks.has_permissions(PermissionLevel.MODERATOR)
@@ -404,7 +404,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         """
         embed = await self.get_embed_from_message(message, index)
         await self.store_embed(ctx, name, embed)
-        await ctx.message.add_reaction(YES_EMOJI)
+        await ctx.message.delete()#suprime l'appel
 
     @embed_store.command(name="remove", aliases=["delete", "rm", "del"])
     @checks.has_permissions(PermissionLevel.MODERATOR)
