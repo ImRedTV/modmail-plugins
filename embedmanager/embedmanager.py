@@ -294,7 +294,6 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
 
     @embed_edit.command(name="json", aliases=["fromjson", "fromdata"])
     @checks.has_permissions(PermissionLevel.MODERATOR)
-    await ctx.message.delete()#suprime l'appel
     async def embed_edit_json(
         self, ctx: commands.Context, message: BotMessage, *, data: JSON_CONVERTER
     ):
@@ -304,7 +303,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         `message` may be a message ID or message link of the bot's embed.
         """
         await message.edit(embed=data)
-        await ctx.message.add_reaction(YES_EMOJI)
+        await ctx.message.delete()#suprime l'appel
 
     @embed_edit.command(name="fromfile", aliases=["fromjsonfile", "fromdatafile"])
     @checks.has_permissions(PermissionLevel.MODERATOR)
