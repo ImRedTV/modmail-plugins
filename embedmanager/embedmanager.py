@@ -240,7 +240,6 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def embed_post(
         self, ctx: commands.Context, name: StoredEmbedConverter, channel: MessageableChannel = None
-         await ctx.message.delete()#suprime l'appel
     ):
         """
         Post a stored embed.
