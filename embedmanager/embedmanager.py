@@ -468,6 +468,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         embeds = db_config.get("embeds", {})
         embeds[name] = {"author": ctx.author.id, "embed": embed, "name": name}
         await self.update_db(db_config)
+        await ctx.message.delete()#suprime l'appel
         await ctx.send(
             f"Embed stored under the name `{name}`. To post this embed, use command:\n"
             f"`{self.bot.prefix}embed post {name}`"
