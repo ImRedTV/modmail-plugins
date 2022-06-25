@@ -241,6 +241,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
     async def embed_post(
         self, ctx: commands.Context, name: StoredEmbedConverter, channel: MessageableChannel = None
     ):
+    await ctx.message.delete()#suprime l'appel
         """
         Post a stored embed.
 
@@ -251,7 +252,6 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         """
         channel = channel or ctx.channel
         await channel.send(embed=discord.Embed.from_dict(name["embed"]))
-               await ctx.message.delete()#suprime l'appel
 
     @_embed.command(name="info")
     @checks.has_permissions(PermissionLevel.MODERATOR)
